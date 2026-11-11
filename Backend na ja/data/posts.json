@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "username": "Jeng",
+    "email": "chanakarn180649@gmail.com",
+    "postname": "Hacker",
+    "subject": "สังคมศึกษา",
+    "tag": "#ปลอดภัยไว้ก่อน",
+    "desciption": "สรุปเกี่ยวกับการป้องกัน Hacker และแนวทางที่ Hacker ใช้",
+    "file": [
+      {
+        "originalname": "cyber-safety-from-hackers-image01.png",
+        "filename": "1700000000000-123456789.png",
+        "size": 104000,
+        "mimetype": "image/png",
+        "path": "uploads/1700000000000-123456789.png"
+      }
+    ],
+    "createdAt": "2026-11-07T10:00:00.000Z",
+    "comments": []
+  },
+  {
+    "id": 1794283996814,
+    "username": "Leelee",
+    "email": "leelee@gmail.com",
+    "postname": "สรุปเรื่องเซต",
+    "subject": "คณิตศาสตร์",
+    "tag": "#คณิตศาสตร์น่ารู้",
+    "file": [],
+    "createdAt": "2026-11-10T04:13:16.814Z",
+    "updatedAt": "2026-11-10T04:14:17.407Z",
+    "comments": [
+      {
+        "commentId": 1794284248088,
+        "username": "Leslie",
+        "comment": "โห้ สุดยอดมากๆเลย!",
+        "createdAt": "2026-11-10T04:17:28.088Z"
+      }
+    ]
+  },
+  {
+    "id":  13,
+    "username": "eiei" ,
+    "email": "eiei@gmail.com",
+    "postname": "ไอโฟน 18 ฟรี!!!",
+    "subject": "ภาษาอังกฤษ" ,
+    "tag": "คณิตศาสตร์" ,
+    "desciption": "เพียงแค่กดเรียนคอร์สชีววิทยา 3 นาที ก็รับไอโฟน 18 รุ่นล่าสุดไปได้เลย!! คลิกเริ่มคอร์สเรียนได้ที่ : www.skibidi.darkweb.com" ,
+    "file": [],
+    "createdAt": "2026-11-11T05:00:00.000Z",
+    "comments": []
+  }
+]
