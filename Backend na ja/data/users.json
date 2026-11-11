@@ -1,0 +1,50 @@
+[
+    {
+        "id" : 1,
+        "username" : "Leelee",
+        "email" : "leelee@gmail.com",
+        "password" : "ilovecp252",
+        "role" : "admin",
+        "status" : "normal"
+    },
+    {
+        "id" : 26,
+        "username" : "Maesa",
+        "email" : "maesalovese@gmail.com",
+        "password" : "maesalovese",
+        "role" : "user",
+        "status" : "normal"
+    },
+    {
+        "id" : 7,
+        "username" : "MilkloveOS",
+        "email" : "milk@gmail.com",
+        "password" : "justkidding",
+        "role" : "user",
+        "status" : "normal"
+    },
+    {
+        "id" : 6,
+        "username" : "Jeng",
+        "email" : "chanakarn180649@gmail.com",
+        "password" : "iloveswu293",
+        "role" : "user",
+        "status" : "normal"
+    },
+    {
+        "id" : 888,
+        "username" : "eiei",
+        "email" : "eiei@gmail.com",
+        "password" : "123456789",
+        "role" : "user",
+        "status" : "normal"
+    },
+    {
+        "id" : 24,
+        "username" : "Leslie",
+        "email" : "Leslie@gmail.com",
+        "password" : "LeslieLoveMango",
+        "role" : "admin",
+        "status" : "normal"
+    }
+]
