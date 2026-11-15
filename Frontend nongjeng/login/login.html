@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notely - Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+  <iframe class="backdrop" src="../home/home.html" title="" tabindex="-1" aria-hidden="true"></iframe>
+
+  <main class="modal">
+
+    <header class="modal-head">
+      <a href="../home/home.html" class="logo">
+        <img src="../Notely Icon.png" alt="Notely Icon">
+        <span>Notely</span>
+      </a>
+      <a href="../home/home.html" class="close" aria-label="ปิด">✕</a>
+    </header>
+
+    <h1>ยินดีต้อนรับกลับมา</h1>
+    <p class="subtitle">กรุณาเข้าสู่ระบบเพื่อเขียนรู้ต่อจากที่ค้างไว้</p>
+
+    <form class="form" action="#" method="post">
+      <label class="field">
+        <span>Username หรือ Gmail</span>
+        <input type="text" name="username" placeholder="name@gmail.com" autocomplete="username" required>
+      </label>
+
+      <label class="field">
+        <span>Password</span>
+        <input type="password" name="password" placeholder="อย่างน้อย 8 ตัวอักษร" minlength="8"
+          autocomplete="current-password" required>
+      </label>
+
+      <button type="submit" class="btn-login">เข้าสู่ระบบ →</button>
+    </form>
+
+    <div class="divider"><span>หรือ</span></div>
+
+    <a href="#" class="btn-google">
+      <img src="../Google icon.png" alt="">
+      <span>ดำเนินการต่อด้วย google</span>
+    </a>
+
+    <p class="signup">ยังไม่มีบัญชี? <a href="#">สมัครสมาชิก</a></p>
+
+  </main>
+
+</body>
+
+</html>
