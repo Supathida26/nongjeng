@@ -409,20 +409,20 @@
 ## ตาราง Unit Test cases ที่ทดสอบ
 
 
-| Test ID | ไฟล์ทดสอบ | Module | กรณีทดสอบ | ข้อมูลนำเข้า | ผลลัพธ์ที่คาดหวัง | Status |
-| :---: | :--- | :---: | :--- | :--- | :--- | :---: |
-| **TC-01** | `test/01-Username.login.test.js`| Auth | เข้าสู่ระบบด้วยชื่อฟิลด์ `username` จาก HTML Form และตรวจสอบการตัด `password` ออก | `username: "Jeng"`<br>`password: "iloveswu293"` | HTTP `200 OK`, `success: true` และใน Object `user` ต้องไม่มีคีย์ `password` ติดกลับมาเด็ดขาด | Pass |
-| **TC-02** | `test/02-Register.password.test.js` | Auth | สมัครสมาชิกด้วยรหัสผ่านสั้นเกินเกณฑ์ขั้นต่ำ (Boundary < 8 ตัวอักษร) | `username: "newuser"`<br>`password: "1234567"` *(7 ตัว)* | HTTP `400 Bad Request`, `success: false` สกัดกั้นทันทีโดยไม่เรียกใช้ฟังก์ชันบันทึกข้อมูลลง Model | Pass |
-| **TC-03** | `test/03-User.banned.test.js` | Auth | บัญชีที่ถูกแบนพยายามล็อกอินด้วยรหัสผ่านที่ถูกต้อง | `identifier: "eiei"` *(status: banned)*<br>`password: "123456789"` | HTTP `403 Forbidden`, `isBanned: true` ปฏิเสธการเข้าถึงแม้รหัสผ่านจะถูกต้องก็ตาม | Pass |
-| **TC-04** | `test/04-CreatedNote.anonymous.test.js` | Post | สร้างโน้ตใหม่โดยไม่ล็อกอิน (Fallback เป็น `Anonymous`) พร้อมแนบไฟล์เดียว (`req.file`) | `title: "สรุป OS"`, `username: undefined`, `req.file: { filename: "os.pdf" }` | HTTP `201 Created`, กำหนดชื่อผู้โพสต์เป็น `"Anonymous"` อัตโนมัติ และแปลงไฟล์เดี่ยวเก็บใน Array `file` | Pass |
-| **TC-05** | `test/05-SearchNoted.test.js` | Post | ค้นหาโน้ต (`search`) เมื่อในฐานข้อมูลมีโพสต์เก่าที่ฟิลด์ `subject` หรือ `tag` หายไป (`undefined`) | `query: { search: "เซต" }`<br>*(Mock โพสต์ที่มีฟิลด์ไม่ครบ)* | HTTP `200 OK` ค้นหาเจอโพสต์เป้าหมายโดยที่เซิร์ฟเวอร์ไม่แครชด้วย `TypeError: Cannot read properties of undefined` | Pass |
-| **TC-06** | `test/06-EditNote.undefined.test.js` | Post | แก้ไขโน้ตแบบบางส่วน (Partial Update) ส่งมาแค่ชื่อใหม่ โดยไม่ส่งวิชาและรายละเอียดมา | `params.id: "1"`<br>`body: { title: "Hacker 2026" }` *(ฟิลด์อื่นเป็น undefined)* | HTTP `200 OK` ส่งเฉพาะคีย์ `{ postname: "Hacker 2026" }` เข้า Model เพื่อไม่ให้ค่า `undefined` ไปทับข้อมูลเดิมหาย | Pass |
-| **TC-07** | `test/07-Comment.input.test.js` | Comment | ผู้ใช้ส่งความคิดเห็นที่เป็นช่องว่างล้วน (Whitespace-only string) | `params.id: "1"`<br>`body: { comment: "      " }` | HTTP `400 Bad Request`, `success: false` ดักจับด้วย `.trim()` และไม่อนุญาตให้บันทึกคอมเมนต์ว่างเปล่า | Pass |
-| **TC-08** | `test/08-User.report.test.js` | Report | ผู้ใช้ส่งรายงานโพสต์ที่ไม่เหมาะสมสำเร็จ (`createReport`) | `postId: 13`, `reporterUsername: "Jeng"`, `reason: "เป็นโพสต์ scammer"` | คืนค่า HTTP `201 Created`, `success: true` โดยตั้งสถานะเริ่มต้นเป็น `status: "pending"` | Pass |
-| **TC-09** | `test/09-User.pending.test.js` | Report | ผู้ใช้ส่งรายงานโพสต์ที่ไม่เหมาะสมสำเร็จ (`createReport`) | `postId: 13`, `reporterUsername: "Jeng"`, `reason: "เป็นโพสต์ scammer"` | คืนค่า HTTP `201 Created`, `success: true` โดยตั้งสถานะเริ่มต้นเป็น `status: "pending"` | Pass |
-| **TC-10** | `test/10-Admin.searchUser.test.js` | Admin | Admin ดึงและค้นหารายชื่อผู้ใช้ (`getUsers`) ต้องไม่หลุดรหัสผ่านของผู้ใช้คนใดออกมา | `query: { search: "lee" }` | HTTP `200 OK` กรองรายชื่อที่ตรงกับ `"lee"` และลบฟิลด์ `password` ออกจากทุก Object ใน Array `users` | Pass |
-| **TC-11** | `test/11-Admin.unbanned.test.js`  | Admin | Admin กดปุ่มแบน/ปลดแบนแบบสลับสถานะ (Toggle Ban) และส่งผลลัพธ์เมื่อปลดแบน | `body: { username: "eiei", status: "normal" }` | HTTP `200 OK` คืนข้อความ `"ปลดระงับการใช้งานบัญชี eiei เรียบร้อยแล้ว"` และสถานะกลับเป็น `"normal"` | Pass |
-| **TC-12** | `test/12-Admin.doubledeleted.test.js`  | Admin | Admin สั่งลบโพสต์ที่ถูกลบไปแล้วซ้ำอีกครั้ง (Idempotency / Double Delete) | `params.id: "13"` *(Model คืนค่า `false`)* | HTTP `404 Not Found`, `success: false` แจ้งเตือน `"ไม่พบโพสต์ที่ต้องการลบ"` แทนการคืนค่า 200 ลวง | Pass |
+| Test ID | ไฟล์ทดสอบ | Module | กรณีทดสอบ | ข้อมูลนำเข้า | ผลลัพธ์ที่คาดหวัง | 
+| :---: | :--- | :---: | :--- | :--- | :--- | 
+| **TC-01** | `test/01-Username.login.test.js`| Auth | เข้าสู่ระบบด้วยชื่อฟิลด์ `username` จาก HTML Form และตรวจสอบการตัด `password` ออก | `username: "Jeng"`<br>`password: "iloveswu293"` | HTTP `200 OK`, `success: true` และใน Object `user` ต้องไม่มีคีย์ `password` ติดกลับมาเด็ดขาด | 
+| **TC-02** | `test/02-Register.password.test.js` | Auth | สมัครสมาชิกด้วยรหัสผ่านสั้นเกินเกณฑ์ขั้นต่ำ (Boundary < 8 ตัวอักษร) | `username: "newuser"`<br>`password: "1234567"` *(7 ตัว)* | HTTP `400 Bad Request`, `success: false` สกัดกั้นทันทีโดยไม่เรียกใช้ฟังก์ชันบันทึกข้อมูลลง Model | 
+| **TC-03** | `test/03-User.banned.test.js` | Auth | บัญชีที่ถูกแบนพยายามล็อกอินด้วยรหัสผ่านที่ถูกต้อง | `identifier: "eiei"` *(status: banned)*<br>`password: "123456789"` | HTTP `403 Forbidden`, `isBanned: true` ปฏิเสธการเข้าถึงแม้รหัสผ่านจะถูกต้องก็ตาม | 
+| **TC-04** | `test/04-CreatedNote.anonymous.test.js` | Post | สร้างโน้ตใหม่โดยไม่ล็อกอิน (Fallback เป็น `Anonymous`) พร้อมแนบไฟล์เดียว (`req.file`) | `title: "สรุป OS"`, `username: undefined`, `req.file: { filename: "os.pdf" }` | HTTP `201 Created`, กำหนดชื่อผู้โพสต์เป็น `"Anonymous"` อัตโนมัติ และแปลงไฟล์เดี่ยวเก็บใน Array `file` | 
+| **TC-05** | `test/05-SearchNoted.test.js` | Post | ค้นหาโน้ต (`search`) เมื่อในฐานข้อมูลมีโพสต์เก่าที่ฟิลด์ `subject` หรือ `tag` หายไป (`undefined`) | `query: { search: "เซต" }`<br>*(Mock โพสต์ที่มีฟิลด์ไม่ครบ)* | HTTP `200 OK` ค้นหาเจอโพสต์เป้าหมายโดยที่เซิร์ฟเวอร์ไม่แครชด้วย `TypeError: Cannot read properties of undefined` |
+| **TC-06** | `test/06-EditNote.undefined.test.js` | Post | แก้ไขโน้ตแบบบางส่วน (Partial Update) ส่งมาแค่ชื่อใหม่ โดยไม่ส่งวิชาและรายละเอียดมา | `params.id: "1"`<br>`body: { title: "Hacker 2026" }` *(ฟิลด์อื่นเป็น undefined)* | HTTP `200 OK` ส่งเฉพาะคีย์ `{ postname: "Hacker 2026" }` เข้า Model เพื่อไม่ให้ค่า `undefined` ไปทับข้อมูลเดิมหาย | 
+| **TC-07** | `test/07-Comment.input.test.js` | Comment | ผู้ใช้ส่งความคิดเห็นที่เป็นช่องว่างล้วน (Whitespace-only string) | `params.id: "1"`<br>`body: { comment: "      " }` | HTTP `400 Bad Request`, `success: false` ดักจับด้วย `.trim()` และไม่อนุญาตให้บันทึกคอมเมนต์ว่างเปล่า | 
+| **TC-08** | `test/08-User.report.test.js` | Report | ผู้ใช้ส่งรายงานโพสต์ที่ไม่เหมาะสมสำเร็จ (`createReport`) | `postId: 13`, `reporterUsername: "Jeng"`, `reason: "เป็นโพสต์ scammer"` | คืนค่า HTTP `201 Created`, `success: true` โดยตั้งสถานะเริ่มต้นเป็น `status: "pending"` | 
+| **TC-09** | `test/09-User.pending.test.js` | Report | ผู้ใช้ส่งรายงานโพสต์ที่ไม่เหมาะสมสำเร็จ (`createReport`) | `postId: 13`, `reporterUsername: "Jeng"`, `reason: "เป็นโพสต์ scammer"` | คืนค่า HTTP `201 Created`, `success: true` โดยตั้งสถานะเริ่มต้นเป็น `status: "pending"` | |
+| **TC-10** | `test/10-Admin.searchUser.test.js` | Admin | Admin ดึงและค้นหารายชื่อผู้ใช้ (`getUsers`) ต้องไม่หลุดรหัสผ่านของผู้ใช้คนใดออกมา | `query: { search: "lee" }` | HTTP `200 OK` กรองรายชื่อที่ตรงกับ `"lee"` และลบฟิลด์ `password` ออกจากทุก Object ใน Array `users` | 
+| **TC-11** | `test/11-Admin.unbanned.test.js`  | Admin | Admin กดปุ่มแบน/ปลดแบนแบบสลับสถานะ (Toggle Ban) และส่งผลลัพธ์เมื่อปลดแบน | `body: { username: "eiei", status: "normal" }` | HTTP `200 OK` คืนข้อความ `"ปลดระงับการใช้งานบัญชี eiei เรียบร้อยแล้ว"` และสถานะกลับเป็น `"normal"` | 
+| **TC-12** | `test/12-Admin.doubledeleted.test.js`  | Admin | Admin สั่งลบโพสต์ที่ถูกลบไปแล้วซ้ำอีกครั้ง (Idempotency / Double Delete) | `params.id: "13"` *(Model คืนค่า `false`)* | HTTP `404 Not Found`, `success: false` แจ้งเตือน `"ไม่พบโพสต์ที่ต้องการลบ"` แทนการคืนค่า 200 ลวง | 
 
 
 ### data structure
@@ -581,12 +581,53 @@
 
 ### ตัวอย่าง test case code
 
+| **TC-01** | `test/01-Username.login.test.js`| Auth | เข้าสู่ระบบด้วยชื่อฟิลด์ `username` จาก HTML Form และตรวจสอบการตัด `password` ออก | `username: "Jeng"`<br>`password: "iloveswu293"` | HTTP `200 OK`, `success: true` และใน Object `user` ต้องไม่มีคีย์ `password` ติดกลับมาเด็ดขาด | Pass |
+
+const loginController = require('../controllers/loginController');
+const loginModel = require('../models/loginmodel');
+
+jest.mock('../models/loginmodel');
+
+const mockResponse = () => {
+    const res = {};
+    res.status = jest.fn().mockReturnValue(res);
+    res.json = jest.fn().mockReturnValue(res);
+    return res;
+};
+
+test('TC-01: เข้าสู่ระบบด้วยฟิลด์ username จาก HTML สำเร็จ และต้องไม่หลุดฟิลด์ password กลับมาใน Response', async () => {
+    const req = { body: { username: 'Jeng', password: 'iloveswu293' } };
+    const res = mockResponse();
+
+    loginModel.findByIdentifierAndPassword.mockResolvedValue({
+        id: 6,
+        username: 'Jeng',
+        email: 'chanakarn180649@gmail.com',
+        password: 'iloveswu293',
+        role: 'user',
+        status: 'normal'
+    });
+
+    await loginController.login(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    const responsePayload = res.json.mock.calls[0][0];
+    expect(responsePayload.success).toBe(true);
+    expect(responsePayload.user.username).toBe('Jeng');
+    expect(responsePayload.user.password).toBeUndefined();
+});
 
 ### Test coverage report
 
 
 ## รายงาน Static และ Dynamic profiling //(รูปแบบตาราง)
-
+| มิติการพัฒนา | Phase 1 (ช่วงเริ่มต้น/โครงสร้างพื้นฐาน) | Phase 2 (ช่วงต่อยอดและยกระดับระบบ) |
+| :--- | :--- | :--- |
+| **1. ขอบเขตฟังก์ชัน (Feature Scope)** | • เน้นการสร้างระบบแกนหลัก (Core Features)<br>• ระบบสมาชิก (Login/Register)<br>• การอัปโหลดไฟล์และสร้างโพสต์โน้ตพื้นฐาน<br>• ระบบคอมเมนต์และระบบแสดงผลหน้า Home | • ขยายสู่ฟังก์ชันขั้นสูงและการบริหารจัดการระบบ<br>• ระบบแดชบอร์ดผู้ดูแลระบบ (Admin Dashboard) เต็มรูปแบบ<br>• ระบบจัดการรายงานความไม่เหมาะสม (Reporting System) แยกตามประเภท (โน้ต, ผู้ใช้, คอมเมนต์)<br>• ระบบแบน/ปลดแบนผู้ใช้และการจัดการโพสต์เจ้าปัญหา |
+| **2. โครงสร้างข้อมูล (Data Structure)** | • ออกแบบโครงสร้างข้อมูล JSON 3 ไฟล์หลัก (`users.json`, `posts.json`, `report.json`) แบบเรียบง่าย<br>• ยังพบปัญหาความไม่สอดคล้องของชื่อฟิลด์ (เช่น สะกดคำว่า `description` ผิดเป็น `desciption` หรือรายงานยังไม่มีฟิลด์ `type`) | • ทำ Data Cleaning และ Normalize โครงสร้าง JSON ให้เป็นมาตรฐานเดียวกัน 100%<br>• เพิ่มฟิลด์เชื่อมโยงความสัมพันธ์ เช่น ฟิลด์ `type` ในรายงาน, การจัดหมวดหมู่แท็ก และการจัดการไฟล์แนบให้ตรงกับเส้นทางจริง (`uploadFiles/`) |
+| **3. การทดสอบระบบ (Quality Assurance)** | • เน้นการทดสอบแบบ Manual Testing บนหน้าเว็บผ่านเบราว์เซอร์ทีละหน้า<br>• ยังไม่มีการทำ Automated Testing | • ยกระดับสู่มาตรฐานทางวิศวกรรมด้วยการเขียน Automated Unit Testing ผ่านเฟรมเวิร์ก Jest<br>• แยกไฟล์ทดสอบออกเป็น 12 ไฟล์ย่อย (`TC-01` ถึง `TC-12`) ครอบคลุมทั้ง Happy Paths และ Edge Cases |
+| **4. ความปลอดภัยและการจัดการข้อผิดพลาด (Security & Edge Cases)** | • เน้นการทำงานให้สำเร็จ (Happy Path)<br>• ยังมีความเสี่ยงเรื่องข้อมูลรั่วไหล เช่น อาจส่งฟิลด์รหัสผ่านติดไปกับ Response<br>• การจัดการข้อมูลขยะหรือข้อมูลที่แหว่งยังไม่รัดกุม | • เพิ่มการตรวจสอบระดับ Edge Cases และ Security เช่น<br>- การตัดฟิลด์ `password` ออกจาก JSON ก่อนส่งออกเสมอ (Data Leak Prevention)<br>- การป้องกันข้อมูล JSON ที่โครงสร้างแหว่งหรือเสียหายไม่ให้เซิร์ฟเวอร์ล่ม (500 Error)<br>- การดักจับข้อมูลป้อนเข้า เช่น คอมเมนต์ช่องว่างล้วน หรือแปลงชนิดข้อมูล String เป็น Number (Type Coercion) |
+| **5. เอกสารประกอบโครงการ (Documentation)** | • เน้นการเขียนโค้ดและสร้างหน้า HTML/CSS/JS พื้นฐาน | • จัดทำเอกสารชุดใหญ่เพื่อการส่งมอบ เช่น ตาราง Test Cases สำหรับ `README.md`, รายงานผลการทดสอบ (Test Coverage Report), ตารางวิเคราะห์ Static & Dynamic Profiling, และเอกสารโครงสร้างข้อมูล (Data Structure & Class Architecture) |
 
 ## สิ่งที่ยังไม่เสร็จสมบูรณ์ //เช่น bug, error
 | ลำดับ | ประเภทปัญหา | รายละเอียดปัญหา / อาการที่พบ | แนวทางแก้ไขหรือข้ออ้างแก้เกี้ยวเวลาโดนทัก |
