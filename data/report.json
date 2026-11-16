@@ -1,0 +1,35 @@
+[
+  {
+    "reportId": 151515,
+    "type": "note",
+    "postId": 13,
+    "targetUsername": "eiei",
+    "commentId": null,
+    "reporterUsername": "Jeng",
+    "reason": "เป็นโพสต์ scammer แจกไอโฟนปลอม",
+    "status": "pending",
+    "createdAt": "2026-11-11T06:00:00.000Z"
+  },
+  {
+    "reportId": 151516,
+    "type": "user",
+    "postId": null,
+    "targetUsername": "eiei",
+    "commentId": null,
+    "reporterUsername": "Maesa",
+    "reason": "ผู้ใช้งานชอบโพสต์ลิงก์สแปมไม่เกี่ยวกับการเรียน",
+    "status": "pending",
+    "createdAt": "2026-11-11T06:30:00.000Z"
+  },
+  {
+    "reportId": 151517,
+    "type": "comment",
+    "postId": 1794283996814,
+    "targetUsername": "Leslie",
+    "commentId": 1794284248088,
+    "reporterUsername": "MilkloveOS",
+    "reason": "ทดสอบระบบรายงานความคิดเห็น",
+    "status": "pending",
+    "createdAt": "2026-11-11T07:00:00.000Z"
+  }
+]

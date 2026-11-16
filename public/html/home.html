@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notely - Home Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Itim&family=Noto+Sans+Thai:wght@700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <a href="#" class="logo">
+            <img src="../png/Notely Icon.png" alt="Notely Icon">
+            <span>Notely</span>
+        </a>
+
+        <nav class="menu">
+            <a href="#" class="menu-item active">
+                <img src="../png/Home Icon.png" alt="">
+                <span>หน้าหลัก</span>
+            </a>
+        </nav>
+
+        <a href="share.html" class="btn-upload">
+            <span class="plus">+</span> อัปโหลดโน้ต
+        </a>
+
+        <a href="login.html" class="login">
+            <span>Login</span>
+        </a>
+    </aside>
+
+    <div class="main">
+
+        <header class="topbar">
+            <label class="search">
+                <img src="../png/Search icon.png" alt="search">
+                <input type="text" placeholder="ค้นหาโน้ต วิชา ผู้ใช้ หรือแท็ก...">
+            </label>
+        </header>
+
+        <main class="content">
+            <section class="hero">
+                <span class="hero-badge"><i></i> พื้นที่แชร์ความรู้ของทุกคน</span>
+                <h1>โน้ตดีๆ ไม่ควรถูกเก็บไว้<br>อ่านคนเดียว</h1>
+                <p>ค้นพบ แบ่งปัน และต่อยอดความรู้คุณภาพของเพื่อนนักเรียนและนักศึกษาทั่วประเทศ</p>
+                <a href="share.html" class="btn-dark">แชร์โน้ตแรกของคุณ →</a>
+            </section>
+
+            <div class="feed-head">
+                <div>
+                    <span class="eyebrow">Your Learning Feed</span>
+                    <h2>โน้ตล่าสุดสำหรับคุณ</h2>
+                </div>
+                <div class="chips">
+                    <a href="#" class="chip active">ทั้งหมด</a>
+                    <a href="#" class="chip">คณิตศาสตร์</a>
+                    <a href="#" class="chip">ชีววิทยา</a>
+                    <a href="#" class="chip">อังกฤษ</a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+<script src="../js/home.js"></script>
+</body>
+
+</html>

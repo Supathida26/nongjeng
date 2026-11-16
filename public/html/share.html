@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notely - Share Note</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/share.css">
+</head>
+
+<body>
+
+    <iframe class="backdrop" src="home.html" title="" tabindex="-1" aria-hidden="true"></iframe>
+
+    <main class="modal">
+
+        <header class="modal-head">
+            <div>
+                <span class="eyebrow">Create new note</span>
+                <h1>แชร์โน้ตของคุณ</h1>
+            </div>
+            <a href="home.html" class="close" aria-label="ปิด">✕</a>
+        </header>
+
+        <form class="form" action="#" method="post" enctype="multipart/form-data">
+
+            <label class="field">
+                <span>ชื่อโน้ต</span>
+                <input type="text" name="title" required>
+            </label>
+
+            <div class="row">
+                <label class="field">
+                    <span>วิชา</span>
+                    <select name="subject">
+                        <option>คณิตศาสตร์</option>
+                        <option>ชีววิทยา</option>
+                        <option>อังกฤษ</option>
+                        <option>พระพุทธศาสนา</option>
+                    </select>
+                </label>
+
+                <label class="field">
+                    <span>แท็ก</span>
+                    <input type="text" name="tags" placeholder="#ตามประเภทโน้ตของคุณ">
+                </label>
+            </div>
+
+            <label class="field">
+                <span>รายละเอียด</span>
+                <textarea name="detail" rows="4" placeholder="เล่าระเอียดให้ฟังว่าโน้ตของคุณเกี่ยวกับอะไร"></textarea>
+            </label>
+
+            <label class="dropzone">
+                <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                <img class="upload-icon" src="../png/upload Icon.png" alt="">
+                <strong>อัปโหลดไฟล์</strong>
+                <small>รองรับ PDF, JPEG, PNG และ DOC</small>
+            </label>
+
+            <button type="submit" class="btn-share">เผยแพร่โน้ต →</button>
+        </form>
+
+    </main>
+
+<script src="../js/share.js"></script>
+</body>
+
+</html>
