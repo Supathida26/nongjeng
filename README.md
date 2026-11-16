@@ -585,8 +585,11 @@
 | :---: | :--- | :---: | :--- | :--- | :--- | 
 | **TC-01** | `test/01-Username.login.test.js`| Auth | เข้าสู่ระบบด้วยชื่อฟิลด์ `username` จาก HTML Form และตรวจสอบการตัด `password` ออก | `username: "Jeng"`<br>`password: "iloveswu293"` | HTTP `200 OK`, `success: true` และใน Object `user` ต้องไม่มีคีย์ `password` ติดกลับมาเด็ดขาด | 
 
+```javascript
+const loginController = require('../controllers/loginController');
+const loginModel = require('../models/loginmodel');
 
-
+jest.mock('../models/loginmodel');
 const loginController = require('../controllers/loginController');
 const loginModel = require('../models/loginmodel');
 
@@ -620,6 +623,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
     expect(responsePayload.user.username).toBe('Jeng');
     expect(responsePayload.user.password).toBeUndefined();
 });
+```
 
 ### Test coverage report
 
