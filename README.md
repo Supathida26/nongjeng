@@ -581,8 +581,9 @@
 
 ### ตัวอย่าง test case code
 
-| **TC-01** | `test/01-Username.login.test.js`| Auth | เข้าสู่ระบบด้วยชื่อฟิลด์ `username` จาก HTML Form และตรวจสอบการตัด `password` ออก | `username: "Jeng"`<br>`password: "iloveswu293"` | HTTP `200 OK`, `success: true` และใน Object `user` ต้องไม่มีคีย์ `password` ติดกลับมาเด็ดขาด | Pass |
-
+| Test ID | ไฟล์ทดสอบ | Module | กรณีทดสอบ | ข้อมูลนำเข้า | ผลลัพธ์ที่คาดหวัง | 
+| :---: | :--- | :---: | :--- | :--- | :--- | 
+| **TC-01** | `test/01-Username.login.test.js`| Auth | เข้าสู่ระบบด้วยชื่อฟิลด์ `username` จาก HTML Form และตรวจสอบการตัด `password` ออก | `username: "Jeng"`<br>`password: "iloveswu293"` | HTTP `200 OK`, `success: true` และใน Object `user` ต้องไม่มีคีย์ `password` ติดกลับมาเด็ดขาด | 
 const loginController = require('../controllers/loginController');
 const loginModel = require('../models/loginmodel');
 
