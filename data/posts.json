@@ -20,26 +20,6 @@
     "comments": []
   },
   {
-    "id": 1794283996814,
-    "username": "Leelee",
-    "email": "leelee@gmail.com",
-    "postname": "สรุปเรื่องเซต",
-    "subject": "คณิตศาสตร์",
-    "tag": "#คณิตศาสตร์น่ารู้",
-    "description": "สรุปเนื้อหาเรื่องเซต ม.4 อ่านเข้าใจง่าย พร้อมตัวอย่างโจทย์",
-    "file": [],
-    "createdAt": "2026-11-10T04:13:16.814Z",
-    "updatedAt": "2026-11-10T04:14:17.407Z",
-    "comments": [
-      {
-        "commentId": 1794284248088,
-        "username": "Leslie",
-        "comment": "โห้ สุดยอดมากๆเลย!",
-        "createdAt": "2026-11-10T04:17:28.088Z"
-      }
-    ]
-  },
-  {
     "id": 13,
     "username": "eiei",
     "email": "eiei@gmail.com",
@@ -49,32 +29,39 @@
     "description": "เพียงแค่กดเรียนคอร์สชีววิทยา 3 นาที ก็รับไอโฟน 18 รุ่นล่าสุดไปได้เลย!! คลิกเริ่มคอร์สเรียนได้ที่ : www.skibidi.darkweb.com",
     "file": [],
     "createdAt": "2026-11-11T05:00:00.000Z",
-    "comments": []
-  },
-  {
-    "id": 1794774360261,
-    "username": "Anonymous",
-    "email": "",
-    "postname": "ตารางธาตุตารางใจ",
-    "subject": "ชีววิทยา",
-    "tag": "#เคมี",
-    "description": "ตารางธาตุสำหรับนักเรียนมอปลาย",
-    "file": [
-      {
-        "originalname": "IMG_8331.JPG",
-        "filename": "1794774360225-946591657.JPG",
-        "size": 4267372,
-        "mimetype": "image/jpeg",
-        "path": "uploadFiles\\1794774360225-946591657.JPG"
-      }
-    ],
-    "createdAt": "2026-11-15T20:26:00.261Z",
     "comments": [
       {
-        "commentId": 1794774381420,
-        "username": "Anonymous",
-        "comment": "ฝากกดจิดตามด้วยนะคะ",
-        "createdAt": "2026-11-15T20:26:21.420Z"
+        "commentId": 1794911741453,
+        "username": "Jeng",
+        "comment": "โม้",
+        "createdAt": "2026-11-17T10:35:41.453Z"
+      }
+    ]
+  },
+  {
+    "id": 1794911800915,
+    "username": "Jeng",
+    "email": "chanakarn180649@gmail.com",
+    "postname": "ok",
+    "subject": "คณิตศาสตร์",
+    "tag": "#eiei",
+    "description": "",
+    "file": [
+      {
+        "originalname": "à¹à¸¡à¹à¸¡à¸µà¸à¸·à¹à¸­ 758_20230101200353.png",
+        "filename": "1794911800908-638882059.png",
+        "size": 101042,
+        "mimetype": "image/png",
+        "path": "uploadFiles\\1794911800908-638882059.png"
+      }
+    ],
+    "createdAt": "2026-11-17T10:36:40.915Z",
+    "comments": [
+      {
+        "commentId": 1794911817476,
+        "username": "Jeng",
+        "comment": "K na",
+        "createdAt": "2026-11-17T10:36:57.476Z"
       }
     ]
   }
