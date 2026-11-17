@@ -56,5 +56,15 @@
     "status": "active",
     "loginType": "local",
     "createdAt": "2026-11-15T20:27:30.837Z"
+  },
+  {
+    "id": 1794911897191,
+    "username": "yay",
+    "email": "yay@gmail.com",
+    "password": "yayayayay",
+    "role": "user",
+    "status": "active",
+    "loginType": "local",
+    "createdAt": "2026-11-17T10:38:17.191Z"
   }
 ]
