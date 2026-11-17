@@ -2,6 +2,7 @@
 
 ## รายชื่อสมาชิกกลุ่ม (Team Members)
 
+<<<<<<< HEAD
 | ลำดับ | รหัสนิสิต | ชื่อ - นามสกุล |
 | :---: | :---: | :--- |
 | 1 | 68102010213 | นางสาววริศรา ทองสุข |
@@ -10,7 +11,16 @@
 | 4 | 68102010562 | นางสาวศุภธิดา พาภิรมย์ |
 
 ## เสนอ
+=======
+| ลำดับ | รหัสนิสิต | ชื่อ - นามสกุล | บทบาท
+| :---: | :---: | :---: | :---: |
+| 1 | 68102010213 | นางสาววริศรา ทองสุข | UI Design, HTML & CSS |
+| 2 | 68102010550 | นายชนกานต์ หิรัญสุขสันต์ | UI Design, Test Case |
+| 3 | 68102010553 | นางสาวพรนัชชา อออุดมยุทธ | Diagram, Backend, JSON |
+| 4 | 68102010562 | นางสาวศุภธิดา พาภิรมย์ | Diagram, JavaScript, Overview |
+>>>>>>> 32c97d6e0b508f564750a5e5bc976f97f3d96f26
 
+## เสนอ
 ผู้ช่วยศาสตราจารย์ ดร.วีรยุทธ เจริญเรืองกิจ
 
 โครงงานนี้เป็นส่วนหนึ่งของการศึกษารายวิชา คพ252 วิศวกรรมซอฟต์แวร์  
@@ -272,6 +282,32 @@
 -	Google Meet ใช้สำหรับประชุม Scrum และพูดคุยเกี่ยวกับปัญหาของ Project
 -	Microsoft Word และ Google Drive ใช้สำหรับทำและเก็บเอกสารของ Project
 
+## UI Screenshot:
+![Login page](./images/1-Login.png)
+
+![Register page](./images/2-Register.png)
+
+![Home page](./images/3-HomePage.png)
+
+![Notification and Filter](./images/4-Notification&filter.png)
+
+![Bookmark page](./images/5-BookMark.png)
+
+![Profile Page](./images/6-Profile.png)
+
+![Create post page](./images/7-CreateNote.png)
+
+![Comment Page](./images/8-Comment.png)
+
+![Edit note page](./images/9-EditNote.png)
+
+![Admin Page](./images/10-Admin.png)
+
+
+## Figma Diagram:
+![Mermaid Diagram](./images/Mermaid-Diagram-.png)
+
+
 ## ขั้นตอนการสรุป Retrospective
 
 ### ลิงก์การรับชม
@@ -316,6 +352,7 @@
 ## สรุปโดยรวม
 
 โดยใน Phase 2 จะเน้นการจัดการงานและการทำงานร่วมกันมากกว่า Phase 1 เช่น การ Track งาน การใช้ Git/GitHub การกำหนด Branch และ Commit Message รวมถึงการประชุม Scrum เพื่อให้สมาชิกทุกคนรู้ว่างานของ Project ดำเนินไปถึงขั้นไหนแล้ว
+<<<<<<< HEAD
 
 # Phase 3
 
@@ -704,3 +741,5 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 ## สรุปโดยรวม
 
 
+=======
+>>>>>>> 32c97d6e0b508f564750a5e5bc976f97f3d96f26
