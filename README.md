@@ -174,30 +174,6 @@
 - ทำเอกสารประกอบโครงงาน โดยโปรแกรมจัดการเอกสาร Microsoft Word และแบ่งปันให้ผู้อื่นทำงานกันต่อด้วยโปรแกรม Discord หรือระบบ Email
 - บันทึกวิดีโอการประชุม Retrospective โดยใช้วิธีการพูดคุยผ่านระบบ Google Meet และใช้โปรแกรมบันทึกวิดีโอด้วยโปรแกรม OBS และแพลตฟอร์มแบ่งปันวิดีโอด้วย YouTube
 
-## UI Screenshot:
-![Login page](./images/1-Login.png)
-
-![Register page](./images/2-Register.png)
-
-![Home page](./images/3-HomePage.png)
-
-![Notification and Filter](./images/4-Notification&filter.png)
-
-![Bookmark page](./images/5-BookMark.png)
-
-![Profile Page](./images/6-Profile.png)
-
-![Create post page](./images/7-CreateNote.png)
-
-![Comment Page](./images/8-Comment.png)
-
-![Edit note page](./images/9-EditNote.png)
-
-![Admin Page](./images/10-Admin.png)
-
-
-## Figma Diagram:
-![Mermaid Diagram](./images/Mermaid-Diagram-.png)
 
 ## ขั้นตอนการสรุป Retrospective
 
