@@ -47,7 +47,7 @@ async function createUser(userData) {
         email: userData.email,
         password: userData.password,
         role: userData.role || "user", // "user" หรือ "admin"
-        status: "active", // "active" หรือ "banned"
+        status: "normal", // "active" หรือ "banned"
         loginType: "local",
         createdAt: new Date().toISOString()
     };
@@ -70,7 +70,7 @@ async function findOrCreateGoogleUser(googlePayload) {
             fullName: googlePayload.name,
             picture: googlePayload.picture,
             role: "user",
-            status: "active",
+            status: "normal",
             loginType: "google",
             createdAt: new Date().toISOString()
         };

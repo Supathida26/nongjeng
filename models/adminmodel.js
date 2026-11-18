@@ -19,8 +19,8 @@ async function banAccount(username, forceStatus = null) {
     }
 
     // ถ้าไม่ได้ระบุสถานะมา ให้สลับระหว่าง banned กับ active อัตโนมัติ
-    const currentStatus = users[index].status || 'active';
-    const nextStatus = forceStatus ? forceStatus : (currentStatus === 'banned' ? 'active' : 'banned');
+    const currentStatus = users[index].status || 'normal';
+    const nextStatus = forceStatus ? forceStatus : (currentStatus === 'banned' ? 'normal' : 'banned');
 
     users[index].status = nextStatus;
     users[index].updatedAt = new Date().toISOString();
