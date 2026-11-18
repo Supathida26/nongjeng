@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - models\postmodel.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>models\postmodel.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">74.32</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">180</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">40.12</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">1.35</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">const fs = require(&#039;fs/promises&#039;);
+const path = require(&#039;path&#039;);
+
+const dataDir = path.join(__dirname, &#039;../data&#039;);
+const filePath = path.join(dataDir, &#039;posts.json&#039;);
+let operationQueue = Promise.resolve();
+
+async function ensureDataDir() {
+    await fs.mkdir(dataDir, { recursive: true });
+}
+
+async function readPostsFromFile() {
+    console.time(&#039;ReadPost&#039;);
+    try {
+        const fileData = await fs.readFile(filePath, &#039;utf8&#039;);
+        const posts = JSON.parse(fileData);
+
+        if (!Array.isArray(posts)) {
+            throw new Error(&#039;ข้อมูลใน posts.json ต้องเป็น array&#039;);
+        }
+
+        return posts;
+    } catch (error) {
+        if (error.code === &#039;ENOENT&#039;) {
+            return [];
+        }
+        throw error;
+    } finally {
+        console.timeEnd(&#039;ReadPost&#039;);
+    }
+}
+
+function updatePosts(update) {
+    const operation = operationQueue.then(async () =&gt; {
+        await ensureDataDir();
+        const posts = await readPostsFromFile();
+        const result = await update(posts);
+        await fs.writeFile(filePath, JSON.stringify(posts, null, 2), &#039;utf8&#039;);
+        return result;
+    });
+
+    operationQueue = operation.catch(() =&gt; {});
+    return operation;
+}
+
+// ลบไฟล์แนบออกจากโฟลเดอร์ uploadFiles เวลาลบโพสต์หรืออัปเดตไฟล์ใหม่
+async function removeUploadedFiles(filesArray) {
+    console.time(&#039;ลบ file ใน uploadFile&#039;);
+    if (!Array.isArray(filesArray)) return;
+    for (const file of filesArray) {
+        if (file &amp;&amp; file.path) {
+            try {
+                await fs.unlink(file.path);
+            } catch (err) {
+                // ข้ามกรณีไม่พบไฟล์ในดิสก์
+            }
+        }
+    }
+    console.timeEnd(&#039;ลบ file ใน uploadFile&#039;);
+}
+
+async function createNote(newPost) {
+    console.time(&#039;สร้าง Post&#039;);
+    if (!newPost.comments) newPost.comments = [];
+    return updatePosts(posts =&gt; {
+        posts.push(newPost);
+        console.timeEnd(&#039;สร้าง Post&#039;);
+        return newPost;
+    });
+}
+
+async function getPosts() {
+    console.time(&#039;ดึงข้อมูล Post&#039;);
+    await operationQueue;
+    console.timeEnd(&#039;ดึงข้อมูล Post&#039;);
+    return readPostsFromFile();
+}
+
+// ดึงโพสต์เดียวตาม ID (ใช้แสดงข้อมูลในหน้า edit.html และ comment.html)
+async function getPostById(postId) {
+    console.time(&#039;ค้นหา Post&#039;);
+    await operationQueue;
+    const posts = await readPostsFromFile();
+    console.timeEnd(&#039;ค้นหา Post&#039;);
+    return posts.find(post =&gt; post.id === Number(postId)) || null;
+}
+
+async function updatePost(postId, updatedData) {
+    console.time(&#039;แก้ไข Post&#039;);
+    return updatePosts(async posts =&gt; {
+        const index = posts.findIndex(post =&gt; post.id === Number(postId));
+
+        if (index === -1) {
+            return null;
+        }
+
+        // ถ้ามีการอัปโหลดไฟล์ใหม่เข้ามาแทนที่ ให้ลบไฟล์เก่าออกด้วย
+        if (updatedData.file &amp;&amp; posts[index].file) {
+            await removeUploadedFiles(posts[index].file);
+        }
+
+        posts[index] = {
+            ...posts[index],
+            ...updatedData,
+            updatedAt: new Date().toISOString()
+        };
+        console.timeEnd(&#039;แก้ไข Post&#039;);
+        return posts[index];
+    });
+}
+
+// ลบโพสต์ออกจากระบบ (ใช้ได้ทั้ง Admin และเจ้าของโพสต์)
+async function deletePost(postId) {
+    console.time(&#039;ลบ Post&#039;);
+    return updatePosts(async posts =&gt; {
+        const index = posts.findIndex(post =&gt; post.id === Number(postId));
+
+        if (index === -1) {
+            return false;
+        }
+
+        // ลบไฟล์แนบของโพสต์นั้นออกจากโฟลเดอร์ uploadFiles
+        await removeUploadedFiles(posts[index].file);
+
+        posts.splice(index, 1);
+        console.timeEnd(&#039;ลบ Post&#039;);
+        return true;
+    });
+}
+
+async function commentPost(postId, commentData) {
+    console.time(&#039;Comment&#039;);
+    return updatePosts(posts =&gt; {
+        const index = posts.findIndex(post =&gt; post.id === Number(postId));
+
+        if (index === -1) {
+            return null;
+        }
+
+        if (!posts[index].comments) {
+            posts[index].comments = [];
+        }
+
+        posts[index].comments.push(commentData);
+        console.timeEnd(&#039;Comment&#039;);
+        return posts[index];
+    });
+}
+
+// ลบคอมเมนต์ (สำหรับเจ้าของคอมเมนต์ หรือ Admin ลบจากกล่องรายงาน Comment)
+async function deleteComment(postId, commentId) {
+    console.time(&#039;ลบ Comment&#039;);
+    return updatePosts(posts =&gt; {
+        const postIndex = posts.findIndex(post =&gt; post.id === Number(postId));
+        if (postIndex === -1 || !Array.isArray(posts[postIndex].comments)) {
+            return null;
+        }
+
+        const commentIndex = posts[postIndex].comments.findIndex(
+            c =&gt; c.commentId === Number(commentId)
+        );
+        if (commentIndex === -1) {
+            return null;
+        }
+
+        posts[postIndex].comments.splice(commentIndex, 1);
+        console.timeEnd(&#039;ลบ Comment&#039;);
+        return posts[postIndex];
+    });
+}
+
+module.exports = {
+    createNote,
+    getPosts,
+    getPostById,
+    updatePost,
+    deletePost,
+    commentPost,
+    deleteComment
+};</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ cyclomatic }} <br>
+    Length : {{ halstead.length }} <br>
+    Difficulty : {{ halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

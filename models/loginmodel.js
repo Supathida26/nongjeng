@@ -32,8 +32,8 @@ async function findByIdentifier(identifier) {
     console.time('ค้นหาผู้ใช้');
     const users = await readUsersFromFile();
     const result = users.find(
-        u => u.username?.toLowerCase() === identifier.toLowerCase() || 
-             u.email?.toLowerCase() === identifier.toLowerCase()
+        u => (u.username && u.username.toLowerCase() === identifier.toLowerCase()) ||
+             (u.email && u.email.toLowerCase() === identifier.toLowerCase())
     ) || null;
     console.timeEnd('ค้นหาผู้ใช้');
     return result;
@@ -74,7 +74,7 @@ async function createUser(userData) {
 async function findOrCreateGoogleUser(googlePayload) {
     console.time('บันทึกข้อมูล Google Login')
     const users = await readUsersFromFile();
-    let user = users.find(u => u.email?.toLowerCase() === googlePayload.email.toLowerCase());
+    let user = users.find(u => u.email && u.email.toLowerCase() === googlePayload.email.toLowerCase());
 
     if (!user) {
         user = {
