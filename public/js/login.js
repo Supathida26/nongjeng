@@ -4,8 +4,92 @@ document.addEventListener('DOMContentLoaded', () => {
     const subtitleEl = document.querySelector('.subtitle');
     const submitBtn = document.querySelector('.btn-login');
     const signupContainer = document.querySelector('.signup');
+    //const googleBtn = document.querySelector('.btn-google');
+    const buttonContainer = document.querySelector('.googleButtonContainer');
 
     let isRegisterMode = false;
+
+    initGoogleLogin();
+
+    function initGoogleLogin() {
+    if (!buttonContainer) return;
+    buttonContainer.innerHTML = '';
+    // --- 1. ตั้งค่า Google Identity Services (เพิ่มส่วนนี้เข้าไป) ---
+    if (typeof google !== 'undefined' && google.accounts) {
+        google.accounts.id.initialize({
+            client_id: '775188938088-7kq52f7914qj24o8ljgl3k92m504skg9.apps.googleusercontent.com',
+            callback: handleCredentialResponse
+        });
+    //}
+
+    // เมื่อผู้ใช้กดปุ่ม Google Login ที่เพื่อนออกแบบไว้
+    /*if (googleBtn) {
+        googleBtn.addEventListener('click', () => {
+            google.accounts.id.prompt((notification) => {
+                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                    console.log('Prompt skipped, trying alternative...');
+                    /*google.accounts.id.renderButton(
+                        googleBtn, // แปลงปุ่มเพื่อนให้กลายเป็นปุ่ม Google แบบเนียนๆ
+                        { theme: "outline", size: "large", width: "100%" }
+                    );
+                }
+            });*/
+            if (buttonContainer) {
+            google.accounts.id.renderButton(
+                buttonContainer,
+                { 
+                    type: "standard",
+                    shape: "rectangular",
+                    //theme: "filled_black",
+                    size: "large",         // ขนาดปุ่ม
+                    text: "signin_with",   // ข้อความ
+                    locale: "th",           // บังคับแสดงผลเป็นภาษาไทย
+                    width: 350
+                });
+            }
+                // หมายเหตุ: วิธีนี้ปุ่มจะเปลี่ยนเป็นของ Google เพื่อให้กดผ่าน FedCM ได้
+        }
+    }
+
+
+    // ฟังก์ชันรับ credential (ID Token) แล้วส่งให้ Backend
+    async function handleCredentialResponse(response) {
+        const credential = response.credential;
+        try {
+            const res = await fetch('/api/users/google-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ credential })
+            });
+
+            const data = await res.json();
+
+            // รองรับระบบ Ban (HTTP 403)
+            if (res.status === 403 && data.isBanned) {
+                alert('บัญชีของคุณถูกระงับ ไม่สามารถเข้าเว็บไซต์นี้ได้')
+                return;
+            }
+
+            if (!res.ok || !data.success) {
+                alert(data.message || 'Google Login ไม่สำเร็จ กรุณาลองใหม่');
+                return;
+            }
+
+            // บันทึก User ลง LocalStorage และพาไปหน้าถัดไป
+            localStorage.setItem('notely_user', JSON.stringify(data.user));
+            alert(data.message || 'เข้าสู่ระบบสำเร็จ');
+
+            // พาไปหน้า Admin หรือ Home ตาม Role
+            if (data.user.role === 'admin') {
+                window.location.href = 'admin.html';
+            } else {
+                window.location.href = 'home.html';
+            }
+        } catch (error) {
+            console.error('Google Login Error:', error);
+            alert('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้');
+        }
+    }
 
     // สลับโหมด เข้าสู่ระบบ <-> สมัครสมาชิก เมื่อกดลิงก์ด้านล่าง
     if (signupContainer) {

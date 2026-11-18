@@ -175,6 +175,13 @@ h1 {
     background: var(--border);
 }
 
+.googleButtonContainer {
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    margin-top: 10px;
+}
+
 .btn-google {
     height: 42px;
     display: flex;
