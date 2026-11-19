@@ -749,20 +749,44 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 
 ### Feedback การทำงานของกลุ่ม
-
+- โดยรวมสมาชิกทำงานร่วมกันได้ดี 
+- มีการแบ่งหน้าที่ค่อนข้างชัดเจน และหากสมาชิกคนใดทำส่วนใดไม่ได้ เพื่อนในกลุ่มก็พร้อมช่วยเหลือ
+- สมาชิกช่วยกันเสนอความคิดเห็น แก้ไขปัญหา และสนับสนุนกันระหว่างทำงาน
 
 ## สรุปโดยรวม
+โดยรวมแล้ว กลุ่มทำงานร่วมกันได้ดี มีการแบ่งหน้าที่ชัดเจน สมาชิกทุกคนมีความรับผิดชอบและพยายามทำงานอย่างเต็มที่ ทุกคนรับฟังความคิดเห็น ช่วยเหลือกัน และร่วมกันแก้ไขปัญหาที่เกิดขึ้น
+อย่างไรก็ตาม กลุ่มพบปัญหาด้านการบริหารเวลา เนื่องจากมีงาน Open House และงานวิชาอื่นเข้ามาพร้อมกัน ทำให้มีเวลาทำงานน้อยลงและเกิดความเหนื่อยล้า
+สำหรับ Phase ถัดไป กลุ่มควรเริ่มทำงานทันทีที่ได้รับมอบหมาย วางแผนและจัดลำดับความสำคัญของงานให้ดีขึ้น รวมถึงหาเวลาทำงานร่วมกันที่เหมาะสม เพื่อให้งานสำเร็จตามเป้าหมายและลดปัญหาที่อาจเกิดขึ้น
+
 
 
 ## Website Screen shot
 
+#### หน้า home.html
 ![หน้าจอหลัก](./images/phase4Home.png)
+
+#### หน้า login.html
+
 ![หน้าจอLogin](./images/phase4Login.png)
+
 ![หน้าจอRegister](./images/phase4Register.png)
+
+#### หน้า share.html
+
 ![หน้าจอShare](./images/phase4Sharenote.png)
+
+#### หน้า edit.html
+
 ![หน้าจอEdit](./images/phase4Editnote.png)
+
+#### หน้า home.html
+
 ![หน้าจอComment](./images/phase4Comment.png)
+
+#### หน้า admin.html
+
 ![หน้าจอAdmin](./images/phase4Adminuser.png)
+
 ![หน้าจอReport](./images/phase4Adminreport.png)
 
 
@@ -814,8 +838,132 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 ## ผล profiling (Static และ Dynamic profiling) เทียบกับ phase 3
 
 
-## อธิบาย CI/CD ที่ใช้ในการทำ product //(โดยที่ CI (Pipeline) ) ให้ใช้ script ที่มีให้ (จำเป็นต้องมี free tier parallel job)
+## อธิบาย CI/CD ที่ใช้ในการทำ product
+### 1. CI/CD ที่ใช้ในการพัฒนา product
+CI (Continuous Integration) ใช้ในการตรวจสอบความถูกต้องในการทดสอบต่างๆ ได้แก่ UI Test Case, Test Case และ Model และมีการทดสอบทุกๆครั้งเมื่อโค้ดมีการเปลี่ยนแปลงไป และ CD (Continuous Delivery) เป็นการเตรียมหรือส่งโค้ดที่ผ่านการตรวจสอบแล้วให้พร้อมใช้งานจริง
 
+### 2. WorkFlow หรือ Script ที่ใช้งานใน CI Pipline
+ภายใน GitHub Actions ซึ่งเป็นระบบที่ทำให้สามารถรันทดสอบได้อัตโนมัติบน environment ที่เตรียมเอาไว้ ทั้งการติดตั้งต่างๆ การตั้งค่าตัวแปร การเรียกใช้ .env และการรันชุดทดสอบ
+
+#### ci-Backend.yml (model - test coverage)
+```yml
+name: BACKEND CI
+
+on:
+  push:
+    branches: sprint4
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Create .env file
+        run: |
+          cat << 'EOF' > .env
+          NODE_ENV=test
+          PORT=${{ secrets.PORT }}
+          GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+          EOF
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Jest tests and coverage
+        run: npm test -- test-coverage --coverage
+```
+
+#### ci-Test Case.yml (Test Case)
+```yml
+name: TEST CASE CI
+
+on:
+  push:
+    branches: sprint4
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Create .env file
+        run: |
+          cat << 'EOF' > .env
+          NODE_ENV=test
+          PORT=${{ secrets.PORT }}
+          GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+          EOF
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Jest Test Case
+        run: npx jest --testPathPatterns="^(.*/)?test/" --testPathIgnorePatterns="(UI-test|test-coverage)"
+```
+#### ci-UI Test.yml (UI Test Case)
+```yml
+name: UI TEST CI
+
+on:
+  push:
+    branches:
+      - sprint4
+
+jobs:
+  playwright-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Create .env file
+        run: |
+          cat << 'EOF' > .env
+          NODE_ENV=test
+          PORT=${{ secrets.PORT }}
+          GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+          EOF
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright UI tests
+        run: npx playwright test UI-test
+```
+
+### 3. การใช้ Free Tier Parallel Job
+มีการใช้ GitHub เป็นหลักโดยใช้ในระบบของ GitHub Actions โดยที่ภายในนี้เป็น Free Tier ที่รองรับการรันแบบ Parallel Job หรือก็คือสามารถรันได้หลายๆ งานพร้อมกันได้ ดังเช่นตัวอย่างข้างต้น ซึ่งได้แก่การรัน ci-UI Test.yml, ci-Backend.yml, ci-Test Case.yml ที่ทำงานพร้อมกันโดยที่ไม่บล็อกกันเอง
+
+### 4. สรุปประโยชน์ต่อการพัฒนา Product
+การนำ CI/CD มาใช้ผ่าน GitHub Actions ช่วยให้ทีมสามารถตรวจสอบความถูกต้องของโค้ดและชุดทดสอบต่างๆ ได้อย่างสม่ำเสมอทุกครั้งที่มีการอัปเดตโค้ด ลดความผิดพลาดและภาระจากการรันทดสอบด้วยมือ รวมถึงช่วยให้ตรวจพบจุดบกพร่องได้เร็วขึ้นก่อนนำโค้ดไปใช้งานจริง นอกจากนี้ การแยก workflow และรันแบบ Parallel Job ยังช่วยให้ทราบผลการทดสอบแต่ละส่วนได้รวดเร็วและแยกแยะสาเหตุของปัญหาได้ชัดเจน ส่งผลให้การพัฒนา product มีเสถียรภาพ และความน่าเชื่อถือมากยิ่งขึ้น
 
 ## สรุปการประชุม
 
@@ -830,3 +978,7 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 ### Feedback การทำงานของกลุ่ม
 
 ### สรุปโดยรวม
+<<<<<<< HEAD
+=======
+
+>>>>>>> e041741f3bce18eba9c7be8d0a9972c762ef7ecb
