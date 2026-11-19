@@ -11,6 +11,7 @@ async function getAllPosts() {
 
 // รองรับทั้งการแบน และปลดแบน (Toggle Ban / Unban) สำหรับปุ่ม Block acc
 async function banAccount(username, forceStatus = null) {
+    console.time('BanUser');
     const users = await loginModel.readUsersFromFile();
     const index = users.findIndex(u => u.username === username);
 
@@ -26,11 +27,13 @@ async function banAccount(username, forceStatus = null) {
     users[index].updatedAt = new Date().toISOString();
 
     await loginModel.writeUsersToFile(users);
+    console.timeEnd('BanUser');
     return users[index];
 }
 
 // ลบบัญชีผู้ใช้ถาวร สำหรับปุ่ม Delete acc ในหน้า admin.html
 async function deleteAccount(username) {
+    console.time('DeleteUser');
     const users = await loginModel.readUsersFromFile();
     const index = users.findIndex(u => u.username === username);
 
@@ -40,6 +43,7 @@ async function deleteAccount(username) {
 
     users.splice(index, 1);
     await loginModel.writeUsersToFile(users);
+    console.timeEnd('DeleteUser');
     return true;
 }
 
