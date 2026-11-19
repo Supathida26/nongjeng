@@ -746,3 +746,73 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 ## สรุปโดยรวม
 
 
+<<<<<<< HEAD
+=======
+## Website Screen shot
+
+
+## UI testcase
+| Test ID | ไฟล์ทดสอบ | กรณีทดสอบ | ผลลัพธ์ที่คาดหวัง | 
+| :---: | :--- | :--- | :--- |
+| UI-01 | 'UI-test/01-HomeUI.test.js' | ตรวจสอบองค์ประกอบแต่ละส่วนในหน้าหลัก | หน้าหลักจะต้องแสดงองค์ประกอบที่มีทั้งหมด (เช่น post, เมนู, searchbar) |
+| UI-02 | 'UI-test/02-LoginUI.test.js' | ตรวจสอบองค์ประกอบแต่ละส่วนในหน้า Login | หน้า Login ต้องแสดงช่อง username/password ให้กรอก และต้องมีปุ่ม Login with Google และปุ่มสมัครใช้งานขึ้นมา |
+| UI-03 | 'UI-test/03-SharenoteUI.test.js' | ตรวจสอบองค์ประกอบแต่ละส่วนในหน้า Share Note | แสดงช่องกรอกข้อมูลในส่วนต่างๆทั้งหมดและปุ่มสำหรับสร้าง Post |
+| UI-04 | 'UI-test/04-UploadfileUI.test.js' | ตรวจสอบชนิดไฟล์ที่รองรับ | สามารถรองรับไฟล์ประเภท PDF, JPG, PNG และ DOC ได้ |
+| UI-05 | 'UI-test/05-EditnoteUI.test.js' | ตรวจสอบองค์ประกอบแต่ละส่วนในหน้า Edit Note |  แสดงช่องแก้ไขข้อมูลที่รายละเอียดตรงกับข้อมูลของหน้า Share Note |
+| UI-06 | 'UI-test/06-CommentUI.test.js' | ตรวจสอบในส่วนช่องแสดงความคิดเห็น | แสดงองค์ประกอบของช่่องความคิดเห็นได้ถูกต้อง |
+| UI-07 | 'UI-test/07-AdminUI.test.js' | ตรวจสอบองค์ประกอบแต่ละส่วนในหน้า Admin | แสดงตารางข้อมูลของ User และส่วนจัดการรายงานโพสต์และความคิดเห็น |
+
+### ตัวอย่าง test case code
+| Test ID | ไฟล์ทดสอบ | กรณีทดสอบ | ผลลัพธ์ที่คาดหวัง | 
+| :---: | :--- | :--- | :--- |
+| UI-06 | 'UI-test/06-CommentUI.test.js' | ตรวจสอบในส่วนช่องแสดงความคิดเห็น | แสดงองค์ประกอบของช่่องความคิดเห็นได้ถูกต้อง |
+
+```javascript
+const { test, expect } = require('@playwright/test');
+const fs = require('fs');
+const path = require('path');
+
+const html = fs.readFileSync(
+    path.join(__dirname, '..', 'public/html/comment.html'),
+    'utf8'
+);
+
+test('UI-07: ตรวจสอบในส่วนช่องแสดงความคิดเห็น', () => {
+    expect(html).toMatch(/class="comments"/i);
+    expect(html).toMatch(/class="composer"/i);
+    expect(html).toMatch(/name="comment"/i);
+    expect(html).toMatch(/แสดงความคิดเห็น/);
+});
+```
+
+### เช็คให้แน่ใจว่า testcases โดยที่ทุก testcase ต้องมี การเช็คค่าสำหรับ expected results
+
+#### Unit Testcase :
+
+![UnitTest](./images/Unit_Testcase.png)
+
+#### UI Testcase :
+
+![UnitTest](./images/UI_Testcase.png)
+
+
+## ผล profiling (Static และ Dynamic profiling) เทียบกับ phase 3
+
+
+## อธิบาย CI/CD ที่ใช้ในการทำ product //(โดยที่ CI (Pipeline) ) ให้ใช้ script ที่มีให้ (จำเป็นต้องมี free tier parallel job)
+
+
+## สรุปการประชุม
+
+### Process การทำงาน
+
+### สิ่งที่ทำได้ดี 
+
+### ปัญหาที่เกิดขึ้นระหว่างทำงาน/สิ่งที่ควรปรับปรุง
+
+### ข้อเสนอแนะ
+
+### Feedback การทำงานของกลุ่ม
+
+### สรุปโดยรวม
+>>>>>>> 344c26e8e66163b6d3e4418c75df6885d2ddeedc
