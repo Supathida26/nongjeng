@@ -730,7 +730,15 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 | 6 | Login system | เมื่อกดปุ่ม Login with Google ระบบไม่สามารถดำเนินการเข้าสู่ระบบได้ตามปกติ | ปรับปรุงและแก้ไขการทำงานของ Backend ในส่วนการเข้าสู่ระบบผ่าน Google เพื่อให้สามารถเข้าสู่ระบบได้อย่างถูกต้อง |
 
 ### Website screenshot 
-![หน้าจอหลักเว็บไซต์](./images/home-page.png)
+
+![หน้าจอหน้าหลัก](./images/phase3Home.png)
+![หน้าจอหน้าLogin](./images/phase3Login.png)
+![หน้าจอหน้าRegister](./images/phase3Register.png)
+![หน้าจอหน้าShare](./images/phase3Sharenote.png)
+![หน้าจอหน้าEdit](./images/phase3Editnote.png)
+![หน้าจอหน้าComment](./images/phase3Comment.png)
+![หน้าจอหน้าAdmin](./images/phase3Adminuser.png)
+![หน้าจอหน้าReport](./images/phase3Adminreport.png)
 
 ## สิ่งเปลี่ยนแปลงจาก รายงาน phase 1 and 2 
 | มิติการพัฒนา | Phase 1 (ช่วงเริ่มต้น/โครงสร้างพื้นฐาน) | Phase 2 (ช่วงต่อยอดและยกระดับระบบ) |
