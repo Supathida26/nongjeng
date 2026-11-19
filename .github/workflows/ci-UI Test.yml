@@ -1,15 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-# This is a basic workflow to help you get started with Actions
-
-name: CI
+name: UI TEST CI
 
 on:
   push:
-    branches: sprint4
+    branches:
+      - sprint4
 
 jobs:
-  test:
+  playwright-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,5 +32,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Jest tests and coverage
-        run: npm test -- --coverage
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright UI tests
+        run: npx playwright test UI-test
