@@ -58,7 +58,6 @@
     "createdAt": "2026-11-15T20:27:30.837Z"
   },
   {
-<<<<<<< HEAD
     "id": "103187716079203474226",
     "username": "supathida2549",
     "email": "supathida2549@gmail.com",
@@ -79,7 +78,8 @@
     "status": "active",
     "loginType": "google",
     "createdAt": "2026-11-19T12:39:11.522Z"
-=======
+  },
+  {
     "id": 1794911897191,
     "username": "yay",
     "email": "yay@gmail.com",
@@ -88,6 +88,5 @@
     "status": "active",
     "loginType": "local",
     "createdAt": "2026-11-17T10:38:17.191Z"
->>>>>>> b1a46a84d44344a02169a57c1f46279aa07add8a
   }
 ]
