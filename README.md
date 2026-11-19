@@ -675,14 +675,31 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ### Static profiling
 
+#### Total
+   
 ![Average กราฟstatic](./images/Staticphase3-Total.png)
+
+#### ไฟล์ loginmodel.js
+
 ![Static login](./images/Staticphase3-loginmodel.png)
+
+#### ไฟล์ postmodel.js
+
 ![Static post](./images/Staticphase3-postmodel.png)
+
+#### ไฟล์ reportmodel.js
+
 ![Static report](./images/Staticphase3-reportmodel.png)
+
+#### ไฟล์ adminmodel.js
+
 ![Static admin](./images/Staticphase3-adminmodel.png)
+
+#### Summery
+
 ![Static file](./images/Staticphase3-summaryfile.png)
 
-ตารางสรุปข้อมูล Static profiling :
+#### ตารางสรุปข้อมูล Static profiling :
 
 | ลำดับ | Model.js | Maintainability (Point) | Line of code (lines) | Difficulty (Point) | Estimated Errors (errors) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -693,47 +710,47 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ### Dynamic profiling
 
-1) ตอน run หน้าเว็บ
+#### ตอน run หน้าเว็บ
  
 ![Dynamic โหลดหน้าweb](./images/Dynamicphase3-loadweb.png)
 
-2) ตอน login
+#### ตอน login
    
 ![Dynamic login](./images/Dynamicphase3-login.png)
 
-3) ตอนสมัครเข้าใช้งานสำเร็จ
+#### ตอนสมัครเข้าใช้งานสำเร็จ
 
 ![Dynamic register](./images/Dynamicphase3-register.png)
 
-4) ตอนสร้าง post สำเร็จ
+#### ตอนสร้าง post สำเร็จ
 
 ![Dynamic post](./images/Dynamicphase3-post.png)
 
-5) ตอนแก้ไขโพสต์
+#### ตอนแก้ไขโพสต์
    
 ![Dynamic editpost](./images/Dynamicphase3-editpost.png)
 
-6) ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
+#### ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
 
 ![Dynamic ค้นหา](./images/Dynamicphase3-search.png)
 
-7) ตอน comment ในโพสต์
+#### ตอน comment ในโพสต์
 
 ![Dynamic comment](./images/Dynamicphase3-comment.png)
 
-8) ตอนลบ comment
+#### ตอนลบ comment
 
 ![Dynamic ลบcomment](./images/Dynamicphase3-deletepost.png)
 
-9) ตอน report post
+#### ตอน report post
 
 ![Dynamic report](./images/Dynamicphase3-report.png)
 
-10) ตอน admin อนุมัติหรือลบ report
+#### ตอน admin อนุมัติหรือลบ report
 
 ![Dynamic report สำหรับ admin](./images/Dynamicphase3-funadmin.png)
 
-ตารางสรุปข้อมูล Dynamic Profiling :
+#### ตารางสรุปข้อมูล Dynamic Profiling :
 
 | ลำดับ | ส่วนการทำงานของระบบ | รายการที่วัดผลการทำงาน | เวลาทำงานที่ปรากฎ (ms)|
 | :--- | :--- | :--- | :--- |
