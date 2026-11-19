@@ -672,7 +672,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ## รายงาน Static และ Dynamic profiling
 
-### Static profiling
+## Static profiling
 
 #### Total
    
@@ -707,7 +707,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 | 3 | reportmodel.js | 68.43 | 89 | 25.38 | 0.74 |
 | 4 | adminmodel.js | 75.64 | 65 | 19.33 | 0.41 |
 
-### Dynamic profiling
+## Dynamic profiling
 
 #### ตอน run หน้าเว็บ
  
@@ -770,7 +770,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 | 15 | Report | เปลี่ยนสถานะ report | 2.141 - 2.860 |
 | 16 | Report | ลบ report | 3.040 - 3.458 |
 
-### Website screenshot 
+## Website screenshot 
 
 #### หน้า home.html
 
