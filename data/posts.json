@@ -50,52 +50,5 @@
     "file": [],
     "createdAt": "2026-11-11T05:00:00.000Z",
     "comments": []
-  },
-  {
-    "id": 1794774360261,
-    "username": "Anonymous",
-    "email": "",
-    "postname": "ตารางธาตุตารางใจ",
-    "subject": "ชีววิทยา",
-    "tag": "#เคมี",
-    "description": "ตารางธาตุสำหรับนักเรียนมอปลาย",
-    "file": [
-      {
-        "originalname": "IMG_8331.JPG",
-        "filename": "1794774360225-946591657.JPG",
-        "size": 4267372,
-        "mimetype": "image/jpeg",
-        "path": "uploadFiles\\1794774360225-946591657.JPG"
-      }
-    ],
-    "createdAt": "2026-11-15T20:26:00.261Z",
-    "comments": [
-      {
-        "commentId": 1794774381420,
-        "username": "Anonymous",
-        "comment": "ฝากกดจิดตามด้วยนะคะ",
-        "createdAt": "2026-11-15T20:26:21.420Z"
-      }
-    ]
-  },
-  {
-    "id": 1794882616923,
-    "username": "Anonymous",
-    "email": "",
-    "postname": "f",
-    "subject": "ชีววิทยา",
-    "tag": "ht",
-    "description": "gg",
-    "file": [
-      {
-        "originalname": "à¸£à¸²à¸¢à¸à¸²à¸à¸à¸¥à¸¸à¹à¸¡à¸à¸°à¹à¸à¸£à¸²à¹à¸à¹à¸à¸£à¸­à¸à¹à¸¡à¹à¹à¸à¹à¸à¹à¸¡à¹à¸à¸±à¸_phasee2_CP283.docx",
-        "filename": "1794882616904-122085098.docx",
-        "size": 492507,
-        "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "path": "uploadFiles\\1794882616904-122085098.docx"
-      }
-    ],
-    "createdAt": "2026-11-17T02:30:16.923Z",
-    "comments": []
   }
 ]

@@ -9,8 +9,8 @@
     --bg-side: #28282a;
     --surface: #333336;
     --border: #4a4a4e;
-    --text: #f1f1f1;
-    --muted: #9a9a9f;
+    --text: #ff8a00;
+    --muted: #f1f1f1; /*9a9a9f*/
     --yellow: #ffc83d;
     --orange: #ff8a00;
     --grad: linear-gradient(90deg, #ffd24a, #ff8a00);

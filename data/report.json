@@ -31,5 +31,16 @@
     "reason": "ทดสอบระบบรายงานความคิดเห็น",
     "status": "pending",
     "createdAt": "2026-11-11T07:00:00.000Z"
+  },
+  {
+    "reportId": 1795089529670,
+    "type": "note",
+    "postId": 1794882616923,
+    "targetUsername": null,
+    "commentId": null,
+    "reporterUsername": "Anonymous",
+    "reason": "หมั่นไส้เฉยๆ",
+    "status": "resolved",
+    "createdAt": "2026-11-19T11:58:49.670Z"
   }
 ]

@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         comments.forEach(c => {
             const item = document.createElement('div');
             item.className = 'comment-item';
-            item.style.cssText = 'padding: 12px 16px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;';
+            item.style.cssText = 'padding: 12px 16px; border-bottom: 1px solid #ffffff; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;';
 
             const isOwner = currentUser && (currentUser.username === c.username || currentUser.role === 'admin');
             const dateStr = c.createdAt ? new Date(c.createdAt).toLocaleString('th-TH') : '';
@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
             item.innerHTML = `
                 <div>
                     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-                        <strong style="color: #111;">@${c.username || 'Anonymous'}</strong>
-                        <small style="color: #9ca3af; font-size: 0.75rem;">${dateStr}</small>
+                        <strong style="color: #ff8a00;">@${c.username || 'Anonymous'}</strong>
+                        <small style="color: #f0f0f0; font-size: 0.75rem;">${dateStr}</small>
                     </div>
-                    <p style="margin: 0; color: #374151;">${c.comment}</p>
+                    <p style="margin: 0; color: #ffffff;">${c.comment}</p>
                 </div>
                 <div style="display: flex; gap: 6px; flex-shrink: 0;">
                     ${isOwner ? `<button class="btn-del-comment" data-cid="${c.commentId}" style="background: none; border: none; color: #dc2626; cursor: pointer; font-size: 0.8rem;">ลบ</button>` : ''}

@@ -145,15 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return `
                 <div style="padding: 12px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
                     <div>
-                        <div style="font-weight: bold; color: #111;">
+                        <div style="font-weight: bold; color: #eee;">
                             ${r.postId ? `โพสต์ ID: #${r.postId}` : ''} 
                             ${r.targetUsername ? `ผู้ใช้: @${r.targetUsername}` : ''}
                             <span style="font-size: 0.8rem; padding: 2px 8px; border-radius: 99px; background: ${isResolved ? '#d1fae5' : '#fef3c7'}; color: ${isResolved ? '#065f46' : '#92400e'};">
                                 ${isResolved ? 'ดำเนินการแล้ว' : 'รอดำเนินการ'}
                             </span>
                         </div>
-                        <div style="color: #dc2626; font-size: 0.9rem; margin-top: 4px;">เหตุผล: ${r.reason}</div>
-                        <small style="color: #6b7280;">รายงานโดย: @${r.reporterUsername || 'Anonymous'}</small>
+                        <div style="color: #ff999a; font-size: 0.9rem; margin-top: 4px;">เหตุผล: ${r.reason}</div>
+                        <small style="color: #eee;">รายงานโดย: @${r.reporterUsername || 'Anonymous'}</small>
                     </div>
 
                     <div style="display: flex; gap: 6px;">
