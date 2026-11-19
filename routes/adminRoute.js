@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
 const reportController = require('../controllers/reportController');
-//const { checkAdmin } = require('../middleware/authMiddleware');
+const { checkAdmin } = require('../middleware');
 
 // ตรวจสอบสิทธิ์ Admin ทั้ง Router
-//router.use(checkAdmin);
+router.use(checkAdmin);
 
 // จัดการผู้ใช้ (ตารางข้อมูลผู้ใช้ในหน้า admin.html)
 router.get('/users', adminController.getUsers);

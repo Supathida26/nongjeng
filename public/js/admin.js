@@ -2,8 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const welcomeNameEl = document.querySelector('.welcome p');
     const emailEl = document.querySelector('.profile .email');
     const userTableBody = document.querySelector('.table-card tbody');
-
-    // อ้างอิงช่องค้นหาและพาเนลทั้ง 4 บล็อกในหน้า admin.html
+    
     const blocks = document.querySelectorAll('.content .block');
     const userSearchInput = blocks[0]?.querySelector('.search input');
 
@@ -16,18 +15,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentReportPanel = blocks[3]?.querySelector('.panel');
     const commentReportSearch = blocks[3]?.querySelector('.search input');
 
-    // 1. แสดงข้อมูล Admin ที่ล็อกอินอยู่
     const currentUser = JSON.parse(localStorage.getItem('notely_user') || 'null');
-    if (currentUser) {
-        if (welcomeNameEl) welcomeNameEl.textContent = `คุณ ${currentUser.username}`;
-        if (emailEl) emailEl.textContent = currentUser.email || '';
+    if (!currentUser || String(currentUser.role).toLowerCase() !== 'admin') {
+        alert('เฉพาะผู้ดูแลระบบ (Admin) เท่านั้นที่เข้าถึงหน้านี้ได้');
+        window.location.href = '/';
+        return;
     }
+
+    const adminHeaders = {
+        'x-username': currentUser.username || '',
+        'x-user-role': currentUser.role || ''
+    };
+
+    // 1. แสดงข้อมูล Admin ที่ล็อกอินอยู่
+    if (welcomeNameEl) welcomeNameEl.textContent = `คุณ ${currentUser.username}`;
+    if (emailEl) emailEl.textContent = currentUser.email || '';
 
     // 2. โหลดและแสดงตารางข้อมูลผู้ใช้
     async function loadUsers(search = '') {
         if (!userTableBody) return;
         try {
-            const res = await fetch(`/api/admin/users?search=${encodeURIComponent(search)}`);
+            const res = await fetch(`/api/admin/users?search=${encodeURIComponent(search)}`, {
+                headers: adminHeaders
+            });
             const data = await res.json();
 
             userTableBody.innerHTML = '';
@@ -67,7 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const res = await fetch('/api/admin/users/ban', {
                         method: 'PATCH',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...adminHeaders
+                        },
                         body: JSON.stringify({ username, status: nextStatus })
                     });
                     const result = await res.json();
@@ -83,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!confirm(`ยืนยันการลบบัญชีผู้ใช้ "${username}" ถาวรหรือไม่?`)) return;
 
                     const res = await fetch(`/api/admin/users/${encodeURIComponent(username)}`, {
-                        method: 'DELETE'
+                        method: 'DELETE',
+                        headers: adminHeaders
                     });
                     const result = await res.json();
                     alert(result.message);
@@ -101,7 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadReports() {
         try {
-            const res = await fetch('/api/admin/reports');
+            const res = await fetch('/api/admin/reports', {
+                headers: adminHeaders
+            });
             const data = await res.json();
             allReports = (res.ok && Array.isArray(data.reports)) ? data.reports : [];
             renderAllReportPanels();
@@ -165,19 +181,25 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }).join('');
 
-        // ปุ่มลบโพสต์ที่ถูกรายงาน (เช่น โพสต์ไอโฟน 18 ฟรี ID 13)
+        // ปุ่มลบโพสต์ที่ถูกรายงาน
         panelEl.querySelectorAll('.btn-admin-del-post').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const postId = btn.dataset.pid;
                 const reportId = btn.dataset.rid;
                 if (!confirm(`ต้องการลบโพสต์ ID #${postId} ออกจากระบบทันทีหรือไม่?`)) return;
 
-                const res = await fetch(`/api/admin/${postId}/deletepost`, { method: 'DELETE' });
+                const res = await fetch(`/api/admin/${postId}/deletepost`, {
+                    method: 'DELETE',
+                    headers: adminHeaders
+                });
                 const data = await res.json();
                 alert(data.message);
 
                 if (res.ok && reportId) {
-                    await fetch(`/api/admin/${reportId}/resolve`, { method: 'PATCH' });
+                    await fetch(`/api/admin/${reportId}/resolve`, {
+                        method: 'PATCH',
+                        headers: adminHeaders
+                    });
                     loadReports();
                 }
             });
@@ -187,7 +209,10 @@ document.addEventListener('DOMContentLoaded', () => {
         panelEl.querySelectorAll('.btn-resolve-report').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const reportId = btn.dataset.rid;
-                const res = await fetch(`/api/admin/${reportId}/resolve`, { method: 'PATCH' });
+                const res = await fetch(`/api/admin/${reportId}/resolve`, {
+                    method: 'PATCH',
+                    headers: adminHeaders
+                });
                 if (res.ok) loadReports();
             });
         });
@@ -196,7 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
         panelEl.querySelectorAll('.btn-del-report').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const reportId = btn.dataset.rid;
-                const res = await fetch(`/api/admin/reports/${reportId}`, { method: 'DELETE' });
+                const res = await fetch(`/api/admin/reports/${reportId}`, {
+                    method: 'DELETE',
+                    headers: adminHeaders
+                });
                 if (res.ok) loadReports();
             });
         });

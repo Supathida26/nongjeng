@@ -11,45 +11,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initGoogleLogin();
 
-    function initGoogleLogin() {
+    function initGoogleLogin(attempt = 0) {
     if (!buttonContainer) return;
-    buttonContainer.innerHTML = '';
-    // --- 1. ตั้งค่า Google Identity Services (เพิ่มส่วนนี้เข้าไป) ---
-    if (typeof google !== 'undefined' && google.accounts) {
-        google.accounts.id.initialize({
-            client_id: '775188938088-7kq52f7914qj24o8ljgl3k92m504skg9.apps.googleusercontent.com',
-            callback: handleCredentialResponse
-        });
-    //}
 
-    // เมื่อผู้ใช้กดปุ่ม Google Login ที่เพื่อนออกแบบไว้
-    /*if (googleBtn) {
-        googleBtn.addEventListener('click', () => {
-            google.accounts.id.prompt((notification) => {
-                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-                    console.log('Prompt skipped, trying alternative...');
-                    /*google.accounts.id.renderButton(
-                        googleBtn, // แปลงปุ่มเพื่อนให้กลายเป็นปุ่ม Google แบบเนียนๆ
-                        { theme: "outline", size: "large", width: "100%" }
-                    );
-                }
-            });*/
-            if (buttonContainer) {
-            google.accounts.id.renderButton(
-                buttonContainer,
-                { 
-                    type: "standard",
-                    shape: "rectangular",
-                    //theme: "filled_black",
-                    size: "large",         // ขนาดปุ่ม
-                    text: "signin_with",   // ข้อความ
-                    locale: "th",           // บังคับแสดงผลเป็นภาษาไทย
-                    width: 350
-                });
-            }
-                // หมายเหตุ: วิธีนี้ปุ่มจะเปลี่ยนเป็นของ Google เพื่อให้กดผ่าน FedCM ได้
+    if (typeof google === 'undefined' || !google.accounts || !google.accounts.id) {
+        if (attempt < 20) {
+            setTimeout(() => initGoogleLogin(attempt + 1), 200);
         }
+        return;
     }
+
+    buttonContainer.innerHTML = '';
+    google.accounts.id.initialize({
+        client_id: '775188938088-7kq52f7914qj24o8ljgl3k92m504skg9.apps.googleusercontent.com',
+        callback: handleCredentialResponse
+    });
+
+    google.accounts.id.renderButton(
+        buttonContainer,
+        {
+            type: 'standard',
+            shape: 'rectangular',
+            size: 'large',
+            text: 'signin_with',
+            locale: 'th',
+            width: 350
+        }
+    );
+}
 
 
     // ฟังก์ชันรับ credential (ID Token) แล้วส่งให้ Backend
