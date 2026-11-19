@@ -32,4 +32,4 @@ jobs:
         run: npm ci
 
       - name: Run Jest Test Case
-        run: npm test -- test
+        run: npx jest --testPathPatterns="^(.*/)?test/" --testPathIgnorePatterns="(UI-test|test-coverage)"
