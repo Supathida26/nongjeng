@@ -670,35 +670,134 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 ![Test-Coverage](./images/test-coverage.png)
 
 
+## รายงาน Static และ Dynamic profiling
 
-## รายงาน Static และ Dynamic profiling //(รูปแบบตาราง)
-| มิติการพัฒนา | Phase 1 (ช่วงเริ่มต้น/โครงสร้างพื้นฐาน) | Phase 2 (ช่วงต่อยอดและยกระดับระบบ) |
-| :--- | :--- | :--- |
-| **1. ขอบเขตฟังก์ชัน (Feature Scope)** | • เน้นการสร้างระบบแกนหลัก (Core Features)<br>• ระบบสมาชิก (Login/Register)<br>• การอัปโหลดไฟล์และสร้างโพสต์โน้ตพื้นฐาน<br>• ระบบคอมเมนต์และระบบแสดงผลหน้า Home | • ขยายสู่ฟังก์ชันขั้นสูงและการบริหารจัดการระบบ<br>• ระบบแดชบอร์ดผู้ดูแลระบบ (Admin Dashboard) เต็มรูปแบบ<br>• ระบบจัดการรายงานความไม่เหมาะสม (Reporting System) แยกตามประเภท (โน้ต, ผู้ใช้, คอมเมนต์)<br>• ระบบแบน/ปลดแบนผู้ใช้และการจัดการโพสต์เจ้าปัญหา |
-| **2. โครงสร้างข้อมูล (Data Structure)** | • ออกแบบโครงสร้างข้อมูล JSON 3 ไฟล์หลัก (`users.json`, `posts.json`, `report.json`) แบบเรียบง่าย<br>• ยังพบปัญหาความไม่สอดคล้องของชื่อฟิลด์ (เช่น สะกดคำว่า `description` ผิดเป็น `desciption` หรือรายงานยังไม่มีฟิลด์ `type`) | • ทำ Data Cleaning และ Normalize โครงสร้าง JSON ให้เป็นมาตรฐานเดียวกัน 100%<br>• เพิ่มฟิลด์เชื่อมโยงความสัมพันธ์ เช่น ฟิลด์ `type` ในรายงาน, การจัดหมวดหมู่แท็ก และการจัดการไฟล์แนบให้ตรงกับเส้นทางจริง (`uploadFiles/`) |
-| **3. การทดสอบระบบ (Quality Assurance)** | • เน้นการทดสอบแบบ Manual Testing บนหน้าเว็บผ่านเบราว์เซอร์ทีละหน้า<br>• ยังไม่มีการทำ Automated Testing | • ยกระดับสู่มาตรฐานทางวิศวกรรมด้วยการเขียน Automated Unit Testing ผ่านเฟรมเวิร์ก Jest<br>• แยกไฟล์ทดสอบออกเป็น 12 ไฟล์ย่อย (`TC-01` ถึง `TC-12`) ครอบคลุมทั้ง Happy Paths และ Edge Cases |
-| **4. ความปลอดภัยและการจัดการข้อผิดพลาด (Security & Edge Cases)** | • เน้นการทำงานให้สำเร็จ (Happy Path)<br>• ยังมีความเสี่ยงเรื่องข้อมูลรั่วไหล เช่น อาจส่งฟิลด์รหัสผ่านติดไปกับ Response<br>• การจัดการข้อมูลขยะหรือข้อมูลที่แหว่งยังไม่รัดกุม | • เพิ่มการตรวจสอบระดับ Edge Cases และ Security เช่น<br>- การตัดฟิลด์ `password` ออกจาก JSON ก่อนส่งออกเสมอ (Data Leak Prevention)<br>- การป้องกันข้อมูล JSON ที่โครงสร้างแหว่งหรือเสียหายไม่ให้เซิร์ฟเวอร์ล่ม (500 Error)<br>- การดักจับข้อมูลป้อนเข้า เช่น คอมเมนต์ช่องว่างล้วน หรือแปลงชนิดข้อมูล String เป็น Number (Type Coercion) |
-| **5. เอกสารประกอบโครงการ (Documentation)** | • เน้นการเขียนโค้ดและสร้างหน้า HTML/CSS/JS พื้นฐาน | • จัดทำเอกสารชุดใหญ่เพื่อการส่งมอบ เช่น ตาราง Test Cases สำหรับ `README.md`, รายงานผลการทดสอบ (Test Coverage Report), ตารางวิเคราะห์ Static & Dynamic Profiling, และเอกสารโครงสร้างข้อมูล (Data Structure & Class Architecture) |
+### Static profiling
 
-## สิ่งที่ยังไม่เสร็จสมบูรณ์ //เช่น bug, error
-| ลำดับ | ประเภทปัญหา | รายละเอียดปัญหา / อาการที่พบ | แนวทางแก้ไขหรือข้ออ้างแก้เกี้ยวเวลาโดนทัก |
-| :---: | :--- | :--- | :--- |
-| 1 | Concurrency & File Race Condition | เนื่องจากใช้ File System บันทึกข้อมูลลงไฟล์ JSON โดยตรง หากมีผู้ใช้งานหลายคนกดส่งข้อมูลพร้อมกันเป๊ะๆ อาจเกิดอาการเขียนไฟล์ทับกัน ทำให้ข้อมูลบางรายการหายไป | หากใช้งานจริงใน Production จะถูกเปลี่ยนไปใช้ Relational Database เช่น PostgreSQL หรือ MongoDB แทน |
-| 2 | Security / Plaintext Password | รหัสผ่านของผู้ใช้งานถูกเก็บเป็น Plaintext ในไฟล์ users.json โดยยังไม่ได้ทำการเข้ารหัส เช่น การใช้ bcrypt | เป็นเวอร์ชันจำลองสำหรับการศึกษาพื้นฐานโครงสร้างระบบ หากนำไปใช้งานจริงจะต้องผ่านกระบวนการ Hashing Password และเพิ่มระบบ JWT Authentication ต่อไป |
-| 3 | File Upload Vulnerability | ระบบอัปโหลดไฟล์ผ่าน Multer ยังไม่มีการตรวจสอบนามสกุลไฟล์หรือประเภทไฟล์อย่างเข้มงวดพอ ผู้ใช้อาจเผลออัปโหลดไฟล์อันตราย เช่น ไฟล์สคริปต์ .exe, .js เข้าสู่โฟลเดอร์ uploadFiles ได้ | จำกัดขนาดไฟล์เบื้องต้นไว้แล้ว แต่ยังไม่ได้ทำ Strict Mime-type Filtering ซึ่งเป็นจุดที่ต้องพัฒนาเพิ่มเรื่อง File Security ในเฟสถัดไป |
-| 4 | State Management & LocalStorage | สถานะการล็อกอินพึ่งพา localStorage ฝั่ง Frontend เพียงอย่างเดียว หากผู้ใช้งานลบข้อมูลเบราว์เซอร์หรือเปิดโหมด Incognito สิทธิ์การเป็น Admin หรือสถานะ User จะหลุดทันทีโดยไม่มี Session ข้ามฝั่ง Server คอยเช็คความปลอดภัยแบบ Real-time | เน้นความเรียบง่ายในการเชื่อมต่อหน้า HTML ดึงข้อมูลผ่าน REST API แบบ Stateless หากจะทำระบบจริงจังจะเพิ่ม Secure Cookie และ Session Management |
-| 5 | UI Responsiveness & Edge Cases | หน้าจอแดชบอร์ด Admin หรือหน้า home.html เมื่อมีข้อความยาวมากๆ หรือโพสต์ชื่อหัวข้อยาวเกินกำหนด อาจทำให้ Grid Layout ยืดแตกหรือตกบรรทัดในหน้าจอขนาดเล็ก | ระบบถูกออกแบบมาให้รองรับ Desktop View เป็นหลัก สำหรับเวอร์ชันหน้าจอพกพาต้องปรับปรุง CSS Media Queries เพิ่มเติม |
-| 6 | Login system | เมื่อกดปุ่ม Login with Google ระบบไม่สามารถดำเนินการเข้าสู่ระบบได้ตามปกติ | ปรับปรุงและแก้ไขการทำงานของ Backend ในส่วนการเข้าสู่ระบบผ่าน Google เพื่อให้สามารถเข้าสู่ระบบได้อย่างถูกต้อง |
+#### Total
+   
+![Average กราฟstatic](./images/Staticphase3-Total.png)
+
+#### ไฟล์ loginmodel.js
+
+![Static login](./images/Staticphase3-loginmodel.png)
+
+#### ไฟล์ postmodel.js
+
+![Static post](./images/Staticphase3-postmodel.png)
+
+#### ไฟล์ reportmodel.js
+
+![Static report](./images/Staticphase3-reportmodel.png)
+
+#### ไฟล์ adminmodel.js
+
+![Static admin](./images/Staticphase3-adminmodel.png)
+
+#### Summery
+
+![Static file](./images/Staticphase3-summaryfile.png)
+
+#### ตารางสรุปข้อมูล Static profiling :
+
+| ลำดับ | Model.js | Maintainability (Point) | Line of code (lines) | Difficulty (Point) | Estimated Errors (errors) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | loginmodel.js | 66.44 | 106 | 31.59 | 0.91 |
+| 2 | postmodel.js | 74.32 | 180 | 40.12 | 1.35 |
+| 3 | reportmodel.js | 68.43 | 89 | 25.38 | 0.74 |
+| 4 | adminmodel.js | 75.64 | 65 | 19.33 | 0.41 |
+
+### Dynamic profiling
+
+#### ตอน run หน้าเว็บ
+ 
+![Dynamic โหลดหน้าweb](./images/Dynamicphase3-loadweb.png)
+
+#### ตอน login
+   
+![Dynamic login](./images/Dynamicphase3-login.png)
+
+#### ตอนสมัครเข้าใช้งานสำเร็จ
+
+![Dynamic register](./images/Dynamicphase3-register.png)
+
+#### ตอนสร้าง post สำเร็จ
+
+![Dynamic post](./images/Dynamicphase3-post.png)
+
+#### ตอนแก้ไขโพสต์
+   
+![Dynamic editpost](./images/Dynamicphase3-editpost.png)
+
+#### ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
+
+![Dynamic ค้นหา](./images/Dynamicphase3-search.png)
+
+#### ตอน comment ในโพสต์
+
+![Dynamic comment](./images/Dynamicphase3-comment.png)
+
+#### ตอนลบ comment
+
+![Dynamic ลบcomment](./images/Dynamicphase3-deletepost.png)
+
+#### ตอน report post
+
+![Dynamic report](./images/Dynamicphase3-report.png)
+
+#### ตอน admin อนุมัติหรือลบ report
+
+![Dynamic report สำหรับ admin](./images/Dynamicphase3-funadmin.png)
+
+ #### ตารางสรุปข้อมูล Dynamic Profiling :
+
+| ลำดับ | ส่วนการทำงานของระบบ | รายการที่วัดผลการทำงาน | เวลาทำงานที่ปรากฎ (ms)|
+| :--- | :--- | :--- | :--- |
+| 1 | login | ReadinfoUser | 0.450 - 2.299 |
+| 2 | login | ค้นหาผู้ใช้ | 0.774 - 1.938 |
+| 3 | login | ตรวจสอบผู้ใช้ใน login | 1.547 - 2.194 |
+| 4 | register | WriteinfoUser | 18.814 - 19.356 |
+| 5 | register | สร้างผู้ใช้ใหม่ | 19.556 - 20.363 |
+| 6 | Post | ReadPost | 0.629 - 4.903 |
+| 7 | Post | สร้าง Post | 1.417 - 2.809 |
+| 8 | Post | ดึงข้อมูล Post | 0.013 - 0.038 |
+| 9 | Post | แก้ไข Post | 1.748 - 2.205 |
+| 10 | Post | ลบ Post | 3.029 - 3.998 |
+| 11 | Comment | Comment | 1.813 - 2.036 |
+| 12 | Comment | ลบ Comment | 1.417 - 2.809 |
+| 13 | Report | ReadReport | 0.958 - 1.570 |
+| 14 | Report | WriteReport | 1.122 - 1.303 |
+| 15 | Report | เปลี่ยนสถานะ report | 2.141 - 2.860 |
+| 16 | Report | ลบ report | 3.040 - 3.458 |
 
 ### Website screenshot 
 
+#### หน้า home.html
+
 ![หน้าจอหน้าหลัก](./images/phase3Home.png)
+
+#### หน้า login.html
+
 ![หน้าจอหน้าLogin](./images/phase3Login.png)
+
 ![หน้าจอหน้าRegister](./images/phase3Register.png)
+
+#### หน้า share.html
+
 ![หน้าจอหน้าShare](./images/phase3Sharenote.png)
+
+#### หน้า edit.html
+
 ![หน้าจอหน้าEdit](./images/phase3Editnote.png)
+
+#### หน้า comment.html
+
 ![หน้าจอหน้าComment](./images/phase3Comment.png)
+
+#### หน้า admin.html
+
 ![หน้าจอหน้าAdmin](./images/phase3Adminuser.png)
+
 ![หน้าจอหน้าReport](./images/phase3Adminreport.png)
 
 
