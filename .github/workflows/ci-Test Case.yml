@@ -31,5 +31,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Run test cases
-        run: npm test -- test
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright Test Case
+        run: npx playwright test test/
