@@ -649,6 +649,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
     expect(responsePayload.user.username).toBe('Jeng');
     expect(responsePayload.user.password).toBeUndefined();
 });
+```
 
 ## Test coverage report
 - **Test Suites:** 4 passed, 4 total
@@ -858,9 +859,9 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 # Phase 4
 
-# อธิบายกระบวนการทำงาน
+## อธิบายกระบวนการทำงาน
 
-## Process
+### Process
 
 #### 1. การบริหารจัดการโปรเจกต์และรอบการทำงาน (Project & Sprint Management)
 - ยกระดับจากการแบ่งงานตามโมดูลใน Phase 2–3 มาสู่การบริหารงานแบบ **Agile Sprint** เต็มรูปแบบ โดยแยกการทำงานตาม Branch เฉพาะ (เช่น `sprint3`)
@@ -878,7 +879,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ---
 
-## Methods
+### Methods
 
 #### 1. การบริหารโปรเจกต์ด้วย Kanban Flow และ Iterative Review
 - ใช้การแตกงานย่อยเป็น Issue บนกระดาน Kanban (`GitHub Projects`) แบ่งสถานะชัดเจน (`To Do`, `In Progress`, `Review`, `Done`) ทำให้มองเห็นคอขวดของงานและกระจายภาระงานได้สมดุลมากขึ้น
@@ -892,7 +893,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ---
 
-## Tools
+### Tools
 
 #### 1. ด้านการบริหารจัดการโปรเจกต์ (Project Management Tools)
 - **Git & GitHub (Branching, Pull Requests & Conflict Resolution):** ใช้ควบคุมเวอร์ชันโค้ด แยกการทำงานตาม Sprint และตรวจสอบความถูกต้องก่อนรวมโค้ด
@@ -912,7 +913,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ---
 
-## ตารางเปรียบเทียบพัฒนาการที่เพิ่มเติมใน Phase 4 เทียบกับ Phase 1–3
+### ตารางเปรียบเทียบพัฒนาการที่เพิ่มเติมใน Phase 4 เทียบกับ Phase 1–3
 
 | ด้านการดำเนินงาน | Phase 1–3 (ที่ผ่านมา) | Phase 4 (ส่วนที่เพิ่มเติมและยกระดับ) |
 | :--- | :--- | :--- |
