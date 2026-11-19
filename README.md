@@ -317,7 +317,6 @@
 ## สรุปโดยรวม
 
 โดยใน Phase 2 จะเน้นการจัดการงานและการทำงานร่วมกันมากกว่า Phase 1 เช่น การ Track งาน การใช้ Git/GitHub การกำหนด Branch และ Commit Message รวมถึงการประชุม Scrum เพื่อให้สมาชิกทุกคนรู้ว่างานของ Project ดำเนินไปถึงขั้นไหนแล้ว
-<<<<<<< HEAD
 
 # Phase 3
 
@@ -652,7 +651,24 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 });
 ```
 
-### Test coverage report
+## Test coverage report
+- **Test Suites:** 4 passed, 4 total
+- **Tests:** 57 passed, 57 total
+- **Snapshots:** 0 total
+- **Execution Time:** 6.852 s
+
+### Coverage Breakdown
+
+| File | Statement Coverage (%) | Branch Coverage (%) | Function Coverage (%) | Lines Coverage (%) | Uncovered Line #s |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **All files** | **100** | **100** | **100** | **100** | - |
+| `../test-coverage/adminmodel.js` | 100 | 100 | 100 | 100 | - |
+| `../test-coverage/loginmodel.js` | 100 | 100 | 100 | 100 | - |
+| `../test-coverage/postmodel.js` | 100 | 100 | 100 | 100 | - |
+| `../test-coverage/reportmodel.js` | 100 | 100 | 100 | 100 | - |
+
+![Test-Coverage](./images/test-coverage.png)
+
 
 
 ## รายงาน Static และ Dynamic profiling
@@ -797,3 +813,4 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 โดยรวมแล้ว กลุ่มทำงานร่วมกันได้ดี มีการแบ่งหน้าที่ชัดเจน สมาชิกทุกคนมีความรับผิดชอบและพยายามทำงานอย่างเต็มที่ ทุกคนรับฟังความคิดเห็น ช่วยเหลือกัน และร่วมกันแก้ไขปัญหาที่เกิดขึ้น
 อย่างไรก็ตาม กลุ่มพบปัญหาด้านการบริหารเวลา เนื่องจากมีงาน Open House และงานวิชาอื่นเข้ามาพร้อมกัน ทำให้มีเวลาทำงานน้อยลงและเกิดความเหนื่อยล้า
 สำหรับ Phase ถัดไป กลุ่มควรเริ่มทำงานทันทีที่ได้รับมอบหมาย วางแผนและจัดลำดับความสำคัญของงานให้ดีขึ้น รวมถึงหาเวลาทำงานร่วมกันที่เหมาะสม เพื่อให้งานสำเร็จตามเป้าหมายและลดปัญหาที่อาจเกิดขึ้น
+
