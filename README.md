@@ -694,24 +694,43 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 ### Dynamic profiling
 
 1) ตอน run หน้าเว็บ
+ 
 ![Dynamic โหลดหน้าweb](./images/Dynamicphase3-loadweb.png)
+
 2) ตอน login
+   
 ![Dynamic login](./images/Dynamicphase3-login.png)
+
 3) ตอนสมัครเข้าใช้งานสำเร็จ
+
 ![Dynamic register](./images/Dynamicphase3-register.png)
+
 4) ตอนสร้าง post สำเร็จ
+
 ![Dynamic post](./images/Dynamicphase3-post.png)
+
 5) ตอนแก้ไขโพสต์
+   
 ![Dynamic editpost](./images/Dynamicphase3-editpost.png)
+
 6) ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
+
 ![Dynamic ค้นหา](./images/Dynamicphase3-search.png)
+
 7) ตอน comment ในโพสต์
+
 ![Dynamic comment](./images/Dynamicphase3-comment.png)
+
 8) ตอนลบ comment
+
 ![Dynamic ลบcomment](./images/Dynamicphase3-deletepost.png)
+
 9) ตอน report post
+
 ![Dynamic report](./images/Dynamicphase3-report.png)
+
 10) ตอน admin อนุมัติหรือลบ report
+
 ![Dynamic report สำหรับ admin](./images/Dynamicphase3-funadmin.png)
 
 ตารางสรุปข้อมูล Dynamic Profiling :
@@ -736,6 +755,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 | 16 | Report | ลบ report | 3.040 - 3.458 |
 
 ## สิ่งที่ยังไม่เสร็จสมบูรณ์ //เช่น bug, error
+
 | ลำดับ | ประเภทปัญหา | รายละเอียดปัญหา / อาการที่พบ | แนวทางแก้ไขหรือข้ออ้างแก้เกี้ยวเวลาโดนทัก |
 | :---: | :--- | :--- | :--- |
 | 1 | Concurrency & File Race Condition | เนื่องจากใช้ File System บันทึกข้อมูลลงไฟล์ JSON โดยตรง หากมีผู้ใช้งานหลายคนกดส่งข้อมูลพร้อมกันเป๊ะๆ อาจเกิดอาการเขียนไฟล์ทับกัน ทำให้ข้อมูลบางรายการหายไป | หากใช้งานจริงใน Production จะถูกเปลี่ยนไปใช้ Relational Database เช่น PostgreSQL หรือ MongoDB แทน |
@@ -747,13 +767,26 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ### Website screenshot 
 
+#### หน้า home.html
 ![หน้าจอหน้าหลัก](./images/phase3Home.png)
+
+ #### หน้า login.html
 ![หน้าจอหน้าLogin](./images/phase3Login.png)
+
 ![หน้าจอหน้าRegister](./images/phase3Register.png)
+
+#### หน้า share.html
 ![หน้าจอหน้าShare](./images/phase3Sharenote.png)
+
+#### หน้า edit.html
 ![หน้าจอหน้าEdit](./images/phase3Editnote.png)
+
+#### หน้า comment.html
 ![หน้าจอหน้าComment](./images/phase3Comment.png)
+
+#### หน้า admin.html
 ![หน้าจอหน้าAdmin](./images/phase3Adminuser.png)
+
 ![หน้าจอหน้าReport](./images/phase3Adminreport.png)
 
 ## สิ่งเปลี่ยนแปลงจาก รายงาน phase 1 and 2 
