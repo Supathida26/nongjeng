@@ -651,8 +651,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 });
 ```
 
-### Test coverage report
-### Test Summary
+## Test coverage report
 - **Test Suites:** 4 passed, 4 total
 - **Tests:** 57 passed, 57 total
 - **Snapshots:** 0 total
