@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Plato - server.js</title>
+  <title>Plato - models\adminmodel.js</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
@@ -36,7 +36,7 @@
 
 <div class="jumbotron">
   <div class="container">
-    <h1>server.js</h1>
+    <h1>models\adminmodel.js</h1>
   </div>
 </div>
 
@@ -44,11 +44,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">100.00</p>
+      <p class="stat">75.64</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">34</p>
+      <p class="stat">65</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">7.83</p>
+      <p class="stat">19.33</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.32</p>
+      <p class="stat">0.41</p>
     </div>
   </div>
 </div>
@@ -89,40 +89,71 @@
 
 <div class="container">
   <div class="row">
-    <textarea id="file-source" class="col-md-12">const express = require(&#039;express&#039;);
-const cors = require(&#039;cors&#039;);
-const path = require(&#039;path&#039;);
-require(&#039;dotenv&#039;).config();
+    <textarea id="file-source" class="col-md-12">const postModel = require(&#039;./postmodel&#039;);
+const loginModel = require(&#039;./loginmodel&#039;);
 
-// Import Routes
-const userRoutes = require(&#039;./routes/loginRoute&#039;);
-const postRoutes = require(&#039;./routes/postRoute&#039;);
-const adminRoutes = require(&#039;./routes/adminRoute&#039;);
-const reportRoutes = require(&#039;./routes/reportRoute&#039;);
+async function getAllUsers() {
+    return await loginModel.readUsersFromFile();
+}
 
-const app = express();
+async function getAllPosts() {
+    return await postModel.getPosts();
+}
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // รองรับการส่งข้อมูลจาก &lt;form&gt; ใน HTML
+// รองรับทั้งการแบน และปลดแบน (Toggle Ban / Unban) สำหรับปุ่ม Block acc
+async function banAccount(username, forceStatus = null) {
+    console.time(&#039;BanUser&#039;);
+    const users = await loginModel.readUsersFromFile();
+    const index = users.findIndex(u =&gt; u.username === username);
 
-// เปิดให้เข้าถึงไฟล์ HTML/CSS/JS ใน public และไฟล์ที่อัปโหลดใน uploadFiles
-app.use(express.static(path.join(__dirname, &#039;public&#039;)));
-app.use(&#039;/uploadFiles&#039;, express.static(path.join(__dirname, &#039;uploadFiles&#039;)));
+    if (index === -1) {
+        return null; // หาผู้ใช้ไม่เจอ
+    }
 
-// เมื่อเข้าหน้าแรก http://localhost:3000 ให้พาไปหน้า home.html อัตโนมัติ
-app.get(&#039;/&#039;, (req, res) =&gt; {
-    res.redirect(&#039;/html/home.html&#039;);
-});
+    // ถ้าไม่ได้ระบุสถานะมา ให้สลับระหว่าง banned กับ active อัตโนมัติ
+    const currentStatus = users[index].status || &#039;active&#039;;
+    const nextStatus = forceStatus ? forceStatus : (currentStatus === &#039;banned&#039; ? &#039;active&#039; : &#039;banned&#039;);
 
-// ใช้งาน Route
-app.use(&#039;/api/users&#039;, userRoutes);
-app.use(&#039;/api/posts&#039;, postRoutes);
-app.use(&#039;/api/admin&#039;, adminRoutes);
-app.use(&#039;/api/reports&#039;, reportRoutes);
+    users[index].status = nextStatus;
+    users[index].updatedAt = new Date().toISOString();
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () =&gt; console.log(`Server running on http://localhost:${PORT}`));</textarea>
+    await loginModel.writeUsersToFile(users);
+    console.timeEnd(&#039;BanUser&#039;);
+    return users[index];
+}
+
+// ลบบัญชีผู้ใช้ถาวร สำหรับปุ่ม Delete acc ในหน้า admin.html
+async function deleteAccount(username) {
+    console.time(&#039;DeleteUser&#039;);
+    const users = await loginModel.readUsersFromFile();
+    const index = users.findIndex(u =&gt; u.username === username);
+
+    if (index === -1) {
+        return false;
+    }
+
+    users.splice(index, 1);
+    await loginModel.writeUsersToFile(users);
+    console.timeEnd(&#039;DeleteUser&#039;);
+    return true;
+}
+
+async function deletePost(postId) {
+    return await postModel.deletePost(postId);
+}
+
+async function deleteComment(postId, commentId) {
+    return await postModel.deleteComment(postId, commentId);
+}
+
+module.exports = {
+    getAllUsers,
+    getAllPosts,
+    banAccount,
+    deleteAccount,
+    deletePost,
+    deleteComment
+};</textarea>
   </div>
 </div>
 
