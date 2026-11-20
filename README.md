@@ -248,25 +248,25 @@
 -	Microsoft Word และ Google Drive ใช้สำหรับทำและเก็บเอกสารของ Project
 
 ## UI Screenshot:
-![Login page](./images/1-Login.png)
+![Login page](./images/Sprint2-UI-Screenshot/1-Login.png)
 
-![Register page](./images/2-Register.png)
+![Register page](./images/Sprint2-UI-Screenshot/2-Register.png)
 
-![Home page](./images/3-HomePage.png)
+![Home page](./images/Sprint2-UI-Screenshot/3-HomePage.png)
 
-![Notification and Filter](./images/4-Notification&filter.png)
+![Notification and Filter](./images/Sprint2-UI-Screenshot/4-Notification&filter.png)
 
-![Bookmark page](./images/5-BookMark.png)
+![Bookmark page](./images/Sprint2-UI-Screenshot/5-BookMark.png)
 
-![Profile Page](./images/6-Profile.png)
+![Profile Page](./images/Sprint2-UI-Screenshot/6-Profile.png)
 
-![Create post page](./images/7-CreateNote.png)
+![Create post page](./images/Sprint2-UI-Screenshot/7-CreateNote.png)
 
-![Comment Page](./images/8-Comment.png)
+![Comment Page](./images/Sprint2-UI-Screenshot/8-Comment.png)
 
-![Edit note page](./images/9-EditNote.png)
+![Edit note page](./images/Sprint2-UI-Screenshot/9-EditNote.png)
 
-![Admin Page](./images/10-Admin.png)
+![Admin Page](./images/Sprint2-UI-Screenshot/10-Admin.png)
 
 
 ## Figma Diagram:
@@ -676,27 +676,27 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 #### Total
    
-![Average กราฟstatic](./images/Staticphase3-Total.png)
+![Average กราฟstatic](./images/Sprint3-StaticProfiling/Staticphase3-Total.png)
 
 #### ไฟล์ loginmodel.js
 
-![Static login](./images/Staticphase3-loginmodel.png)
+![Static login](./images/Sprint3-StaticProfiling/Staticphase3-loginmodel.png)
 
 #### ไฟล์ postmodel.js
 
-![Static post](./images/Staticphase3-postmodel.png)
+![Static post](./images/Sprint3-StaticProfiling/Staticphase3-postmodel.png)
 
 #### ไฟล์ reportmodel.js
 
-![Static report](./images/Staticphase3-reportmodel.png)
+![Static report](./images/Sprint3-StaticProfiling/Staticphase3-reportmodel.png)
 
 #### ไฟล์ adminmodel.js
 
-![Static admin](./images/Staticphase3-adminmodel.png)
+![Static admin](./images/Sprint3-StaticProfiling/Staticphase3-adminmodel.png)
 
 #### Summery
 
-![Static file](./images/Staticphase3-summaryfile.png)
+![Static file](./images/Sprint3-StaticProfiling/Staticphase3-summaryfile.png)
 
 #### ตารางสรุปข้อมูล Static profiling :
 
@@ -710,48 +710,48 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 ## Dynamic profiling
 
 #### ตอน run หน้าเว็บ
- 
-![Dynamic โหลดหน้าweb](./images/Dynamicphase3-loadweb.png)
+
+![Dynamic โหลดหน้าweb](./images/Sprint3-DynamicProfiling/Dynamicphase3-loadweb.png)
 
 #### ตอน login
-   
-![Dynamic login](./images/Dynamicphase3-login.png)
+
+![Dynamic login](./images/Sprint3-DynamicProfiling/Dynamicphase3-login.png)
 
 #### ตอนสมัครเข้าใช้งานสำเร็จ
 
-![Dynamic register](./images/Dynamicphase3-register.png)
+![Dynamic register](./images/Sprint3-DynamicProfiling/Dynamicphase3-register.png)
 
 #### ตอนสร้าง post สำเร็จ
 
-![Dynamic post](./images/Dynamicphase3-post.png)
+![Dynamic post](./images/Sprint3-DynamicProfiling/Dynamicphase3-post.png)
 
 #### ตอนแก้ไขโพสต์
-   
-![Dynamic editpost](./images/Dynamicphase3-editpost.png)
+
+![Dynamic editpost](./images/Sprint3-DynamicProfiling/Dynamicphase3-editpost.png)
 
 #### ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
 
-![Dynamic ค้นหา](./images/Dynamicphase3-search.png)
+![Dynamic ค้นหา](./images/Sprint3-DynamicProfiling/Dynamicphase3-search.png)
 
 #### ตอน comment ในโพสต์
 
-![Dynamic comment](./images/Dynamicphase3-comment.png)
+![Dynamic comment](./images/Sprint3-DynamicProfiling/Dynamicphase3-comment.png)
 
-#### ตอนลบ comment ในโพสต์
+#### ตอนลบ comment
 
-![Dynamic ลบcomment](./images/Dynamicphase3-deletecomment.png)
+![Dynamic ลบcomment](./images/Sprint3-DynamicProfiling/Dynamicphase3-deletecomment.png)
 
 #### ตอนลบ post
 
-![Dynamic ลบpost](./images/Dynamicphase3-deletepost.png)
+![Dynamic ลบpost](./images/Sprint3-DynamicProfiling/Dynamicphase3-deletepost.png)
 
 #### ตอน report post
 
-![Dynamic report](./images/Dynamicphase3-report.png)
+![Dynamic report](./images/Sprint3-DynamicProfiling/Dynamicphase3-report.png)
 
 #### ตอน admin อนุมัติหรือลบ report
 
-![Dynamic report สำหรับ admin](./images/Dynamicphase3-adminuser.png)
+![Dynamic report สำหรับ admin](./images/Sprint3-DynamicProfiling/Dynamicphase3-adminuser.png)
 
  #### ตารางสรุปข้อมูล Dynamic Profiling :
 
@@ -787,35 +787,35 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 | 7 | UI Font Color Pallete | สีของตัวอักษรภายในหน้าต่างๆ มีความจางหรือกลมกลืนกับสีของพื้นหลังจนเกินไป ทำให้มองไม่เห็นตัวอักษรนั้นๆ | ปรับปรุงและแก้ไขสีของตัวอักษรที่ CSS และ JavaScript เพื่อให้มองเห็นชัดเจนขึ้น |
 | 8 | UI Post's Box & Login Profile | หน้าต่างของ post มีความเล็กเกินไปและรูปที่อัพโหลดไม่แสดงขึ้นมาบน post รวมถึงบริเวณที่บ่งบอกว่าผู้ใช้ได้ login แล้ว มีความเรียบง่านเกินไป และมีปัญหากับ font ที่แสดงออกมา | ปรับปรุงและแก้ไขรูปแบบ CSS และ JavaScript ให้มีความเหมาะสมมากขึ้น |
 
-## Website screenshot 
+### Website screenshot 
 
 #### หน้า home.html
 
-![หน้าจอหน้าหลัก](./images/phase3Home.png)
+![หน้าจอหน้าหลัก](./images/Sprint3-UI-Screenshot/phase3Home.png)
 
-#### หน้า login.html
+ #### หน้า login.html
 
-![หน้าจอหน้าLogin](./images/phase3Login.png)
+![หน้าจอหน้าLogin](./images/Sprint3-UI-Screenshot/phase3Login.png)
 
-![หน้าจอหน้าRegister](./images/phase3Register.png)
+![หน้าจอหน้าRegister](./images/Sprint3-UI-Screenshot/phase3Register.png)
 
 #### หน้า share.html
 
-![หน้าจอหน้าShare](./images/phase3Sharenote.png)
+![หน้าจอหน้าShare](./images/Sprint3-UI-Screenshot/phase3Sharenote.png)
 
 #### หน้า edit.html
 
-![หน้าจอหน้าEdit](./images/phase3Editnote.png)
+![หน้าจอหน้าEdit](./images/Sprint3-UI-Screenshot/phase3Editnote.png)
 
 #### หน้า comment.html
 
-![หน้าจอหน้าComment](./images/phase3Comment.png)
+![หน้าจอหน้าComment](./images/Sprint3-UI-Screenshot/phase3Comment.png)
 
 #### หน้า admin.html
 
-![หน้าจอหน้าAdmin](./images/phase3Adminuser.png)
+![หน้าจอหน้าAdmin](./images/Sprint3-UI-Screenshot/phase3Adminuser.png)
 
-![หน้าจอหน้าReport](./images/phase3Adminreport.png)
+![หน้าจอหน้าReport](./images/Sprint3-UI-Screenshot/phase3Adminreport.png)
 
 
 ## สิ่งเปลี่ยนแปลงจาก รายงาน phase 1 and 2 
@@ -944,33 +944,33 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 #### หน้า home.html
 
-![หน้าจอหลัก](./images/phase4Home.png)
+![หน้าจอหลัก](./images/Sprint4-UI-Screenshot/phase4Home.png)
 
 
 #### หน้า login.html
 
-![หน้าจอLogin](./images/phase4Login.png)
+![หน้าจอLogin](./images/Sprint4-UI-Screenshot/phase4Login.png)
 
-![หน้าจอRegister](./images/phase4Register.png)
+![หน้าจอRegister](./images/Sprint4-UI-Screenshot/phase4Register.png)
 
 
 #### หน้า share.html
 
-![หน้าจอShare](./images/phase4Sharenote.png)
+![หน้าจอShare](./images/Sprint4-UI-Screenshot/phase4Sharenote.png)
 
 #### หน้า edit.html
 
-![หน้าจอEdit](./images/phase4Editnote.png)
+![หน้าจอEdit](./images/Sprint4-UI-Screenshot/phase4Editnote.png)
 
 #### หน้า comment.html
 
-![หน้าจอComment](./images/phase4Comment.png)
+![หน้าจอComment](./images/Sprint4-UI-Screenshot/phase4Comment.png)
 
 #### หน้า admin.html
 
-![หน้าจอAdmin](./images/phase4Adminuser.png)
+![หน้าจอAdmin](./images/Sprint4-UI-Screenshot/phase4Adminuser.png)
 
-![หน้าจอReport](./images/phase4Adminreport.png)
+![หน้าจอReport](./images/Sprint4-UI-Screenshot/phase4Adminreport.png)
 
 
 ## UI testcase
@@ -1024,27 +1024,27 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 
 #### Total
 
-![Average กราฟstatic](./images/Staticphase4-Total.png)
+![Average กราฟstatic](./images/Sprint4-StaticProfiling/Staticphase4-Total.png)
 
 #### ไฟล์ loginmode.js
 
-![Static login](./images/Staticphase4-loginmodel.png)
+![Static login](./images/Sprint4-StaticProfiling/Staticphase4-loginmodel.png)
 
 #### ไฟล์ postmodel.js
 
-![Static post](./images/Staticphase4-postmodel.png)
+![Static post](./images/Sprint4-StaticProfiling/Staticphase4-postmodel.png)
 
 #### ไฟล์ reportmodel.js
 
-![Static report](./images/Staticphase4-reportmodel.png)
+![Static report](./images/Sprint4-StaticProfiling/Staticphase4-reportmodel.png)
 
 #### ไฟล์ adminmodel.js
 
-![Static admin](./images/Staticphase4-adminmodel.png)
+![Static admin](./images/Sprint4-StaticProfiling/Staticphase4-adminmodel.png)
 
 #### Summary
 
-![Static file](./images/Staticphase4-summeryfile.png)
+![Static file](./images/Sprint4-StaticProfiling/Staticphase4-summeryfile.png)
 
 #### ตารางสรุปข้อมูล Static profiling :
 
@@ -1059,47 +1059,47 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 
 #### ตอน run หน้าเว็บ
  
-![Dynamic โหลดหน้าweb](./images/Dynamicphase4-loadweb.png)
+![Dynamic โหลดหน้าweb](./images/Sprint4-DynamicProfiling/Dynamicphase4-loadweb.png)
 
 #### ตอน login
    
-![Dynamic login](./images/Dynamicphase4-login.png)
+![Dynamic login](./images/Sprint4-DynamicProfiling/Dynamicphase4-login.png)
 
 #### ตอนสมัครเข้าใช้งานสำเร็จ
 
-![Dynamic register](./images/Dynamicphase3-register.png)
+![Dynamic register](./images/Sprint4-DynamicProfiling/Dynamicphase3-register.png)
 
 #### ตอนสร้าง post สำเร็จ
 
-![Dynamic post](./images/Dynamicphase3-post.png)
+![Dynamic post](./images/Sprint4-DynamicProfiling/Dynamicphase3-post.png)
 
 #### ตอนแก้ไขโพสต์
    
-![Dynamic editpost](./images/Dynamicphase4-editpost.png)
+![Dynamic editpost](./images/Sprint4-DynamicProfiling/Dynamicphase4-editpost.png)
 
 #### ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
 
-![Dynamic ค้นหา](./images/Dynamicphase4-search.png)
+![Dynamic ค้นหา](./images/Sprint4-DynamicProfiling/Dynamicphase4-search.png)
 
 #### ตอน comment ในโพสต์
 
-![Dynamic comment](./images/Dynamicphase4-comment.png)
+![Dynamic comment](./images/Sprint4-DynamicProfiling/Dynamicphase4-comment.png)
 
 #### ตอนลบ comment ในโพสต์
 
-![Dynamic ลบcomment](./images/Dynamicphase4-deletecomment.png)
+![Dynamic ลบcomment](./images/Sprint4-DynamicProfiling/Dynamicphase4-deletecomment.png)
 
 #### ตอนลบ post
 
-![Dynamic ลบpost](./images/Dynamicphase4-deletepost.png)
+![Dynamic ลบpost](./images/Sprint4-DynamicProfiling/Sprint4-DynamicProfiling/Dynamicphase4-deletepost.png)
 
 #### ตอน report post
 
-![Dynamic report](./images/Dynamicphase4-report.png)
+![Dynamic report](./images/Sprint4-DynamicProfiling/Dynamicphase4-report.png)
 
 #### ตอน admin อนุมัติหรือลบ report
 
-![Dynamic report สำหรับ admin](./images/Dynamicphase4-adminuser.png)
+![Dynamic report สำหรับ admin](./images/Sprint4-DynamicProfiling/Dynamicphase4-adminuser.png)
 
 #### ตารางสรุปข้อมูล Dynamic Profiling :
 
