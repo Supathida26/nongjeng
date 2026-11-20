@@ -737,9 +737,13 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ![Dynamic comment](./images/Dynamicphase3-comment.png)
 
-#### ตอนลบ comment
+#### ตอนลบ comment ในโพสต์
 
-![Dynamic ลบcomment](./images/Dynamicphase3-deletepost.png)
+![Dynamic ลบcomment](./images/Dynamicphase3-deletecomment.png)
+
+#### ตอนลบ post
+
+![Dynamic ลบpost](./images/Dynamicphase3-deletepost.png)
 
 #### ตอน report post
 
@@ -747,7 +751,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 #### ตอน admin อนุมัติหรือลบ report
 
-![Dynamic report สำหรับ admin](./images/Dynamicphase3-funadmin.png)
+![Dynamic report สำหรับ admin](./images/Dynamicphase3-adminuser.png)
 
  #### ตารางสรุปข้อมูล Dynamic Profiling :
 
@@ -923,16 +927,19 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 | **Tools หลักที่เพิ่มเติม** | Google Meet, OBS, Figma, Mermaid, GitHub Projects, Jest (เบื้องต้น) | **GitHub Actions (CI/CD)**, **Jest Coverage Report**, **Playwright (`@playwright/test`)**, Profiling & Markdown Badges |
 
 
-## Website Screen shot
+## Website Screenshot
 
 #### หน้า home.html
+
 ![หน้าจอหลัก](./images/phase4Home.png)
+
 
 #### หน้า login.html
 
 ![หน้าจอLogin](./images/phase4Login.png)
 
 ![หน้าจอRegister](./images/phase4Register.png)
+
 
 #### หน้า share.html
 
@@ -1004,15 +1011,27 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 
 #### Total
 
+![Average กราฟstatic](./images/Staticphase4-Total.png)
+
 #### ไฟล์ loginmode.js
+
+![Static login](./images/Staticphase4-loginmodel.png)
 
 #### ไฟล์ postmodel.js
 
+![Static post](./images/Staticphase4-postmodel.png)
+
 #### ไฟล์ reportmodel.js
+
+![Static report](./images/Staticphase4-reportmodel.png)
 
 #### ไฟล์ adminmodel.js
 
+![Static admin](./images/Staticphase4-adminmodel.png)
+
 #### Summary
+
+![Static file](./images/Staticphase4-summeryfile.png)
 
 #### ตารางสรุปข้อมูล Static profiling :
 
@@ -1027,43 +1046,47 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 
 #### ตอน run หน้าเว็บ
  
-
+![Dynamic โหลดหน้าweb](./images/Dynamicphase4-loadweb.png)
 
 #### ตอน login
    
-
+![Dynamic login](./images/Dynamicphase4-login.png)
 
 #### ตอนสมัครเข้าใช้งานสำเร็จ
 
-
+![Dynamic register](./images/Dynamicphase3-register.png)
 
 #### ตอนสร้าง post สำเร็จ
 
-
+![Dynamic post](./images/Dynamicphase3-post.png)
 
 #### ตอนแก้ไขโพสต์
    
-
+![Dynamic editpost](./images/Dynamicphase4-editpost.pngg)
 
 #### ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
 
-
+![Dynamic ค้นหา](./images/Dynamicphase4-search.png)
 
 #### ตอน comment ในโพสต์
 
+![Dynamic comment](./images/Dynamicphase4-comment.png)
 
+#### ตอนลบ comment ในโพสต์
 
-#### ตอนลบ comment
+![Dynamic ลบcomment](./images/Dynamicphase4-deletecomment.png)
 
+#### ตอนลบ post
 
+![Dynamic ลบpost](./images/Dynamicphase4-deletepost.png)
 
 #### ตอน report post
 
-
+![Dynamic report](./images/Dynamicphase4-report.png)
 
 #### ตอน admin อนุมัติหรือลบ report
 
-
+![Dynamic report สำหรับ admin](./images/Dynamicphase4-adminuser.png)
 
 #### ตารางสรุปข้อมูล Dynamic Profiling :
 
@@ -1232,7 +1255,19 @@ jobs:
 
 ### ข้อเสนอแนะ
 
+- **การนำแนวปฏิบัติทางวิศวกรรมซอฟต์แวร์ไปใช้ในโปรเจกต์ถัดไป:** เนื่องจาก Phase 4 เป็นเฟสสุดท้ายของโครงงาน บทเรียนสำคัญที่ทีมได้รับคือควรวางโครงสร้างระบบอัตโนมัติ (Automated Testing และ CI/CD Pipeline) ควบคู่กับการเขียนโค้ดตั้งแต่เฟสแรก รวมถึงเริ่มดำเนินงานทันทีที่ได้รับโจทย์เพื่อลดความกดดันจากงานวิชาอื่นและกิจกรรมเสริมหลักสูตรในช่วงท้าย
+
+- **การยกระดับระบบสู่การใช้งานจริง (Production Readiness):** หากนำเว็บไซต์ **Notely** ไปพัฒนาต่อยอดเพื่อใช้งานจริง ควรปรับเปลี่ยนโครงสร้างการจัดเก็บข้อมูลจากไฟล์ JSON ไปใช้ระบบฐานข้อมูล (เช่น PostgreSQL หรือ MongoDB) เพื่อป้องกันปัญหาการเขียนข้อมูลทับกัน (Race Condition) พร้อมเพิ่มการเข้ารหัสรหัสผ่านด้วย `bcrypt` และระบบยืนยันตัวตนผ่าน Session หรือ JWT
+
+- **การปรับปรุงความปลอดภัยและประสบการณ์ผู้ใช้งาน (Security & UX):** ควรเพิ่มการตรวจสอบชนิดไฟล์อัปโหลด (Strict MIME-type Validation) ใน Multer แก้ไขการทำงานของระบบเข้าสู่ระบบด้วย Google OAuth ให้สมบูรณ์ และปรับปรุง CSS Responsive เพื่อให้แสดงผลบนหน้าจอสมาร์ตโฟนและแท็บเล็ตได้อย่างสมบูรณ์
+
 ### Feedback การทำงานของกลุ่ม
+
+- **ความสำเร็จและการเติบโตตลอดทั้ง 4 Phase:** สมาชิกทุกคนได้เรียนรู้กระบวนการพัฒนาซอฟต์แวร์แบบครบวงจร ตั้งแต่การเก็บ Requirement การออกแบบ UI/Diagram ในช่วงต้น ไปจนถึงการยกระดับคุณภาพโค้ดในเฟสสุดท้ายด้วยการทำ Unit Testing (Coverage 100%), UI Testing ด้วย Playwright, Profiling และ CI/CD Pipeline จนสามารถส่งมอบระบบได้ครบตามเป้าหมาย
+
+- **ความรับผิดชอบและการทำงานเป็นทีม:** แม้ในช่วงที่ผ่านมาสมาชิกในกลุ่มจะต้องเผชิญกับอุปสรรคหลายด้าน ทั้งภาระงานวิชาอื่น งาน Open House รวมถึงปัญหาสุขภาพในบางช่วง แต่ทุกคนยังคงแบ่งหน้าที่กันอย่างชัดเจน ช่วยเหลือเกื้อกูลกัน รับฟังความคิดเห็น และร่วมมือกันแก้ไขปัญหาเฉพาะหน้าจนผ่านพ้นทุกอุปสรรคมาได้
+
+- **ความประทับใจในการปิดโปรเจกต์:** การทำงานร่วมกันตลอดทั้ง 4 Phase ทำให้สมาชิกทุกคนมีทักษะการสื่อสาร การบริหารเวลา และการใช้เครื่องมือพัฒนาซอฟต์แวร์ร่วมกันอย่างเป็นระบบมากขึ้น ขอบคุณเพื่อนร่วมทีมทุกคนที่ทุ่มเทแรงกายแรงใจและคอยสนับสนุนกันมาโดยตลอดจนโครงงานสำเร็จลุล่วงอย่างสมบูรณ์
 
 ### สรุปโดยรวม
 
