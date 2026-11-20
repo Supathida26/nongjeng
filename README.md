@@ -693,25 +693,48 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ### Dynamic profiling
 
-1) ตอน run หน้าเว็บ
+#### ตอน run หน้าเว็บ
+
 ![Dynamic โหลดหน้าweb](./images/Dynamicphase3-loadweb.png)
-2) ตอน login
+
+#### ตอน login
+
 ![Dynamic login](./images/Dynamicphase3-login.png)
-3) ตอนสมัครเข้าใช้งานสำเร็จ
+
+#### ตอนสมัครเข้าใช้งานสำเร็จ
+
 ![Dynamic register](./images/Dynamicphase3-register.png)
-4) ตอนสร้าง post สำเร็จ
+
+#### ตอนสร้าง post สำเร็จ
+
 ![Dynamic post](./images/Dynamicphase3-post.png)
-5) ตอนแก้ไขโพสต์
+
+#### ตอนแก้ไขโพสต์
+
 ![Dynamic editpost](./images/Dynamicphase3-editpost.png)
-6) ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
+
+#### ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
+
 ![Dynamic ค้นหา](./images/Dynamicphase3-search.png)
-7) ตอน comment ในโพสต์
+
+#### ตอน comment ในโพสต์
+
 ![Dynamic comment](./images/Dynamicphase3-comment.png)
-8) ตอนลบ comment
-![Dynamic ลบcomment](./images/Dynamicphase3-deletepost.png)
-9) ตอน report post
+
+#### ตอนลบ comment
+
+![Dynamic ลบcomment](./images/Dynamicphase3-deletecomment.png)
+
+#### ตอนลบ post
+
+![Dynamic ลบpost](./images/Dynamicphase3-deletepost.png)
+
+#### ตอน report post
+
 ![Dynamic report](./images/Dynamicphase3-report.png)
-10) ตอน admin อนุมัติหรือลบ report
+
+#### ตอน admin อนุมัติหรือลบ report
+
 ![Dynamic report สำหรับ admin](./images/Dynamicphase3-adminuser.png)
 
 ตารางสรุปข้อมูล Dynamic Profiling :
