@@ -1067,11 +1067,11 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 
 #### ตอนสมัครเข้าใช้งานสำเร็จ
 
-![Dynamic register](./images/Sprint4-DynamicProfiling/Dynamicphase3-register.png)
+![Dynamic register](./images/Sprint4-DynamicProfiling/Dynamicphase4-register.png)
 
 #### ตอนสร้าง post สำเร็จ
 
-![Dynamic post](./images/Sprint4-DynamicProfiling/Dynamicphase3-post.png)
+![Dynamic post](./images/Sprint4-DynamicProfiling/Dynamicphase4-post.png)
 
 #### ตอนแก้ไขโพสต์
    
@@ -1091,7 +1091,7 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 
 #### ตอนลบ post
 
-![Dynamic ลบpost](./images/Sprint4-DynamicProfiling/Sprint4-DynamicProfiling/Dynamicphase4-deletepost.png)
+![Dynamic ลบpost](./images/Sprint4-DynamicProfiling/Dynamicphase4-deletepost.png)
 
 #### ตอน report post
 
@@ -1301,7 +1301,7 @@ jobs:
 
 ## สรุปการประชุม
 
-Final Retrospective : 
+### Final Retrospective : 
 
 ### Process การทำงาน
 - แก้ไข bugs ต่างๆที่เกิดขึ้น ได้แก่ Middleware ของหน้า admin, การ login ด้วย Google login, และหน้า UI ต่างๆที่ตัวอักษรจางเกินไป หรือเกินกรอบที่กำหนด
