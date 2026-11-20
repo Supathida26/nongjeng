@@ -1000,6 +1000,72 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 
 ## ผล profiling (Static และ Dynamic profiling) เทียบกับ phase 3
 
+## Static profiling
+
+
+## Dynamic profiling
+
+#### ตอน run หน้าเว็บ
+ 
+
+
+#### ตอน login
+   
+
+
+#### ตอนสมัครเข้าใช้งานสำเร็จ
+
+
+
+#### ตอนสร้าง post สำเร็จ
+
+
+
+#### ตอนแก้ไขโพสต์
+   
+
+
+#### ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
+
+
+
+#### ตอน comment ในโพสต์
+
+
+
+#### ตอนลบ comment
+
+
+
+#### ตอน report post
+
+
+
+#### ตอน admin อนุมัติหรือลบ report
+
+
+
+#### ตารางสรุปข้อมูล Dynamic Profiling :
+
+| ลำดับ | ส่วนการทำงานของระบบ | รายการที่วัดผลการทำงาน | เวลาทำงานที่ปรากฎ (ms)|
+| :--- | :--- | :--- | :--- |
+| 1 | login | ReadinfoUser | 0.20 - 1.170 |
+| 2 | login | ค้นหาผู้ใช้ | 0.854 - 1.392 |
+| 3 | login | ตรวจสอบผู้ใช้ใน login | 1.003 - 1.458 |
+| 4 | register | WriteinfoUser | 1.039 - 2.645 |
+| 5 | register | สร้างผู้ใช้ใหม่ | 2.432 - 3.792 |
+| 6 | Post | ReadPost | 1.041 - 5.524 |
+| 7 | Post | สร้าง Post | 1.417 - 2.809 |
+| 8 | Post | ดึงข้อมูล Post | 0.008 - 0.079 |
+| 9 | Post | แก้ไข Post | 1.825 - 4.587 |
+| 10 | Post | ลบ Post | 3.160 - 4.481 |
+| 11 | Comment | Comment | 1.887 - 2.071 |
+| 12 | Comment | ลบ Comment | 2.142 - 3.696 | 
+| 13 | Report | ReadReport | 1.031 - 1.921 |
+| 14 | Report | WriteReport | 0.867 - 1.339 |
+| 15 | Report | เปลี่ยนสถานะ report | 2.269 - 2.746 |
+| 16 | Report | ลบ report | 2.731 - 3.384 |
+
 
 ## อธิบาย CI/CD ที่ใช้ในการทำ product
 ### 1. CI/CD ที่ใช้ในการพัฒนา product

@@ -88,5 +88,25 @@
     "status": "active",
     "loginType": "local",
     "createdAt": "2026-11-17T10:38:17.191Z"
+  },
+  {
+    "id": 1795160930509,
+    "username": "sadly",
+    "email": "sadly@gmail.com",
+    "password": "saddddddd",
+    "role": "user",
+    "status": "normal",
+    "loginType": "local",
+    "createdAt": "2026-11-20T07:48:50.509Z"
+  },
+  {
+    "id": 1795160992953,
+    "username": "Happy",
+    "email": "Happy@gmail.com",
+    "password": "happyyyyyy",
+    "role": "user",
+    "status": "normal",
+    "loginType": "local",
+    "createdAt": "2026-11-20T07:49:52.953Z"
   }
 ]
