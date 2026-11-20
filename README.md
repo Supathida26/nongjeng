@@ -675,14 +675,31 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ### Static profiling
 
+#### Total
+   
 ![Average กราฟstatic](./images/Staticphase3-Total.png)
+
+#### ไฟล์ loginmodel.js
+
 ![Static login](./images/Staticphase3-loginmodel.png)
+
+#### ไฟล์ postmodel.js
+
 ![Static post](./images/Staticphase3-postmodel.png)
+
+#### ไฟล์ reportmodel.js
+
 ![Static report](./images/Staticphase3-reportmodel.png)
+
+#### ไฟล์ adminmodel.js
+
 ![Static admin](./images/Staticphase3-adminmodel.png)
+
+#### Summery
+
 ![Static file](./images/Staticphase3-summaryfile.png)
 
-ตารางสรุปข้อมูล Static profiling :
+#### ตารางสรุปข้อมูล Static profiling :
 
 | ลำดับ | Model.js | Maintainability (Point) | Line of code (lines) | Difficulty (Point) | Estimated Errors (errors) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -694,11 +711,11 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 ### Dynamic profiling
 
 #### ตอน run หน้าเว็บ
-
+ 
 ![Dynamic โหลดหน้าweb](./images/Dynamicphase3-loadweb.png)
 
 #### ตอน login
-
+   
 ![Dynamic login](./images/Dynamicphase3-login.png)
 
 #### ตอนสมัครเข้าใช้งานสำเร็จ
@@ -710,7 +727,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 ![Dynamic post](./images/Dynamicphase3-post.png)
 
 #### ตอนแก้ไขโพสต์
-
+   
 ![Dynamic editpost](./images/Dynamicphase3-editpost.png)
 
 #### ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
@@ -735,9 +752,9 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 #### ตอน admin อนุมัติหรือลบ report
 
-![Dynamic report สำหรับ admin](./images/Dynamicphase3-adminuser.png)
+![Dynamic report สำหรับ admin](./images/Dynamicphase3-funadmin.png)
 
-ตารางสรุปข้อมูล Dynamic Profiling :
+#### ตารางสรุปข้อมูล Dynamic Profiling :
 
 | ลำดับ | ส่วนการทำงานของระบบ | รายการที่วัดผลการทำงาน | เวลาทำงานที่ปรากฎ (ms)|
 | :--- | :--- | :--- | :--- |
@@ -759,6 +776,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 | 16 | Report | ลบ report | 3.040 - 3.458 |
 
 ## สิ่งที่ยังไม่เสร็จสมบูรณ์ //เช่น bug, error
+
 | ลำดับ | ประเภทปัญหา | รายละเอียดปัญหา / อาการที่พบ | แนวทางแก้ไขหรือข้ออ้างแก้เกี้ยวเวลาโดนทัก |
 | :---: | :--- | :--- | :--- |
 | 1 | Concurrency & File Race Condition | เนื่องจากใช้ File System บันทึกข้อมูลลงไฟล์ JSON โดยตรง หากมีผู้ใช้งานหลายคนกดส่งข้อมูลพร้อมกันเป๊ะๆ อาจเกิดอาการเขียนไฟล์ทับกัน ทำให้ข้อมูลบางรายการหายไป | หากใช้งานจริงใน Production จะถูกเปลี่ยนไปใช้ Relational Database เช่น PostgreSQL หรือ MongoDB แทน |
@@ -767,16 +785,31 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 | 4 | State Management & LocalStorage | สถานะการล็อกอินพึ่งพา localStorage ฝั่ง Frontend เพียงอย่างเดียว หากผู้ใช้งานลบข้อมูลเบราว์เซอร์หรือเปิดโหมด Incognito สิทธิ์การเป็น Admin หรือสถานะ User จะหลุดทันทีโดยไม่มี Session ข้ามฝั่ง Server คอยเช็คความปลอดภัยแบบ Real-time | เน้นความเรียบง่ายในการเชื่อมต่อหน้า HTML ดึงข้อมูลผ่าน REST API แบบ Stateless หากจะทำระบบจริงจังจะเพิ่ม Secure Cookie และ Session Management |
 | 5 | UI Responsiveness & Edge Cases | หน้าจอแดชบอร์ด Admin หรือหน้า home.html เมื่อมีข้อความยาวมากๆ หรือโพสต์ชื่อหัวข้อยาวเกินกำหนด อาจทำให้ Grid Layout ยืดแตกหรือตกบรรทัดในหน้าจอขนาดเล็ก | ระบบถูกออกแบบมาให้รองรับ Desktop View เป็นหลัก สำหรับเวอร์ชันหน้าจอพกพาต้องปรับปรุง CSS Media Queries เพิ่มเติม |
 | 6 | Login system | เมื่อกดปุ่ม Login with Google ระบบไม่สามารถดำเนินการเข้าสู่ระบบได้ตามปกติ | ปรับปรุงและแก้ไขการทำงานของ Backend ในส่วนการเข้าสู่ระบบผ่าน Google เพื่อให้สามารถเข้าสู่ระบบได้อย่างถูกต้อง |
+| 7 | UI Font Color Pallete | สีของตัวอักษรภายในหน้าต่างๆ มีความจางหรือกลมกลืนกับสีของพื้นหลังจนเกินไป ทำให้มองไม่เห็นตัวอักษรนั้นๆ | ปรับปรุงและแก้ไขสีของตัวอักษรที่ CSS และ JavaScript เพื่อให้มองเห็นชัดเจนขึ้น |
+| 8 | UI Post's Box & Login Profile | หน้าต่างของ post มีความเล็กเกินไปและรูปที่อัพโหลดไม่แสดงขึ้นมาบน post รวมถึงบริเวณที่บ่งบอกว่าผู้ใช้ได้ login แล้ว มีความเรียบง่านเกินไป และมีปัญหากับ font ที่แสดงออกมา | ปรับปรุงและแก้ไขรูปแบบ CSS และ JavaScript ให้มีความเหมาะสมมากขึ้น |
 
 ### Website screenshot 
 
+#### หน้า home.html
 ![หน้าจอหน้าหลัก](./images/phase3Home.png)
+
+ #### หน้า login.html
 ![หน้าจอหน้าLogin](./images/phase3Login.png)
+
 ![หน้าจอหน้าRegister](./images/phase3Register.png)
+
+#### หน้า share.html
 ![หน้าจอหน้าShare](./images/phase3Sharenote.png)
+
+#### หน้า edit.html
 ![หน้าจอหน้าEdit](./images/phase3Editnote.png)
+
+#### หน้า comment.html
 ![หน้าจอหน้าComment](./images/phase3Comment.png)
+
+#### หน้า admin.html
 ![หน้าจอหน้าAdmin](./images/phase3Adminuser.png)
+
 ![หน้าจอหน้าReport](./images/phase3Adminreport.png)
 
 ## สิ่งเปลี่ยนแปลงจาก รายงาน phase 1 and 2 
