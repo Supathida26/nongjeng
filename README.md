@@ -712,7 +712,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 9) ตอน report post
 ![Dynamic report](./images/Dynamicphase3-report.png)
 10) ตอน admin อนุมัติหรือลบ report
-![Dynamic report สำหรับ admin](./images/Dynamicphase3-funadmin.png)
+![Dynamic report สำหรับ admin](./images/Dynamicphase3-adminuser.png)
 
 ตารางสรุปข้อมูล Dynamic Profiling :
 
