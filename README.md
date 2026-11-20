@@ -10,16 +10,6 @@
 | 4 | 68102010562 | นางสาวศุภธิดา พาภิรมย์ | Diagram, JavaScript, Overview |
 
 ## เสนอ
-<<<<<<< HEAD
-=======
-=======
-- นางสาววริศรา ทองสุข 68102010213
-- นายชนกานต์ หิรัญสุขสันต์ 68102010550
-- นางสาวพรนัชชา อออุดมยุทธ 68102010553
-- นางสาวศุภธิดา พาภิรมย์ 68102010562
-
-**เสนอ**
->>>>>>> a177b5d76d6fd9ec61d1dfad6dc2fcc991a37d39
 ผู้ช่วยศาสตราจารย์ ดร.วีรยุทธ เจริญเรืองกิจ
 
 โครงงานนี้เป็นส่วนหนึ่งของการศึกษารายวิชา คพ252 วิศวกรรมซอฟต์แวร์  
@@ -257,25 +247,25 @@
 -	Microsoft Word และ Google Drive ใช้สำหรับทำและเก็บเอกสารของ Project
 
 ## UI Screenshot:
-![Login page](./images/1-Login.png)
+![Login page](./images/Sprint2-UI-Screenshot/1-Login.png)
 
-![Register page](./images/2-Register.png)
+![Register page](./images/Sprint2-UI-Screenshot/2-Register.png)
 
-![Home page](./images/3-HomePage.png)
+![Home page](./images/Sprint2-UI-Screenshot/3-HomePage.png)
 
-![Notification and Filter](./images/4-Notification&filter.png)
+![Notification and Filter](./images/Sprint2-UI-Screenshot/4-Notification&filter.png)
 
-![Bookmark page](./images/5-BookMark.png)
+![Bookmark page](./images/Sprint2-UI-Screenshot/5-BookMark.png)
 
-![Profile Page](./images/6-Profile.png)
+![Profile Page](./images/Sprint2-UI-Screenshot/6-Profile.png)
 
-![Create post page](./images/7-CreateNote.png)
+![Create post page](./images/Sprint2-UI-Screenshot/7-CreateNote.png)
 
-![Comment Page](./images/8-Comment.png)
+![Comment Page](./images/Sprint2-UI-Screenshot/8-Comment.png)
 
-![Edit note page](./images/9-EditNote.png)
+![Edit note page](./images/Sprint2-UI-Screenshot/9-EditNote.png)
 
-![Admin Page](./images/10-Admin.png)
+![Admin Page](./images/Sprint2-UI-Screenshot/10-Admin.png)
 
 
 ## Figma Diagram:
