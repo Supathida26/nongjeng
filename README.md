@@ -1287,13 +1287,13 @@ jobs:
 หมายเหตุ: เว็บไซต์ยังไม่ได้ตั้งค่า HTTPS ที่ได้รับการรับรอง 
 
 
-### AWS Elastic Beanstalk Environment
+**AWS Elastic Beanstalk Environment**
 
 
-### Website Notely หลัง Deploy
+**Website Notely หลัง Deploy**
 
 
-### ผลการ Deploy
+**ผลการ Deploy**
 
 
 ## สรุปการประชุม
