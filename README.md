@@ -248,25 +248,25 @@
 -	Microsoft Word และ Google Drive ใช้สำหรับทำและเก็บเอกสารของ Project
 
 ## UI Screenshot:
-![Login page](./images/1-Login.png)
+![Login page](./images/Sprint2-UI-Screenshot/1-Login.png)
 
-![Register page](./images/2-Register.png)
+![Register page](./images/Sprint2-UI-Screenshot/2-Register.png)
 
-![Home page](./images/3-HomePage.png)
+![Home page](./images/Sprint2-UI-Screenshot/3-HomePage.png)
 
-![Notification and Filter](./images/4-Notification&filter.png)
+![Notification and Filter](./images/Sprint2-UI-Screenshot/4-Notification&filter.png)
 
-![Bookmark page](./images/5-BookMark.png)
+![Bookmark page](./images/Sprint2-UI-Screenshot/5-BookMark.png)
 
-![Profile Page](./images/6-Profile.png)
+![Profile Page](./images/Sprint2-UI-Screenshot/6-Profile.png)
 
-![Create post page](./images/7-CreateNote.png)
+![Create post page](./images/Sprint2-UI-Screenshot/7-CreateNote.png)
 
-![Comment Page](./images/8-Comment.png)
+![Comment Page](./images/Sprint2-UI-Screenshot/8-Comment.png)
 
-![Edit note page](./images/9-EditNote.png)
+![Edit note page](./images/Sprint2-UI-Screenshot/9-EditNote.png)
 
-![Admin Page](./images/10-Admin.png)
+![Admin Page](./images/Sprint2-UI-Screenshot/10-Admin.png)
 
 
 ## Figma Diagram:
