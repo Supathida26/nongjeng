@@ -44,11 +44,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">75.64</p>
+      <p class="stat">77.58</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">65</p>
+      <p class="stat">64</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">19.33</p>
+      <p class="stat">19.68</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.41</p>
+      <p class="stat">0.36</p>
     </div>
   </div>
 </div>
@@ -100,9 +100,9 @@ async function getAllPosts() {
     return await postModel.getPosts();
 }
 
-// รองรับทั้งการแบน และปลดแบน (Toggle Ban / Unban) สำหรับปุ่ม Block acc
+// รองรับทั้งการแบน และปลดแบน สำหรับปุ่ม Block acc
 async function banAccount(username, forceStatus = null) {
-    console.time(&#039;BanUser&#039;);
+    //console.time(&#039;BanUser&#039;);
     const users = await loginModel.readUsersFromFile();
     const index = users.findIndex(u =&gt; u.username === username);
 
@@ -110,21 +110,20 @@ async function banAccount(username, forceStatus = null) {
         return null; // หาผู้ใช้ไม่เจอ
     }
 
-    // ถ้าไม่ได้ระบุสถานะมา ให้สลับระหว่าง banned กับ active อัตโนมัติ
-    const currentStatus = users[index].status || &#039;active&#039;;
-    const nextStatus = forceStatus ? forceStatus : (currentStatus === &#039;banned&#039; ? &#039;active&#039; : &#039;banned&#039;);
+    const currentStatus = users[index].status || &#039;normal&#039;;
+    const nextStatus = forceStatus ? forceStatus : (currentStatus === &#039;banned&#039; ? &#039;normal&#039; : &#039;banned&#039;);
 
     users[index].status = nextStatus;
     users[index].updatedAt = new Date().toISOString();
 
     await loginModel.writeUsersToFile(users);
-    console.timeEnd(&#039;BanUser&#039;);
+    //console.timeEnd(&#039;BanUser&#039;);
     return users[index];
 }
 
 // ลบบัญชีผู้ใช้ถาวร สำหรับปุ่ม Delete acc ในหน้า admin.html
 async function deleteAccount(username) {
-    console.time(&#039;DeleteUser&#039;);
+    //console.time(&#039;DeleteUser&#039;);
     const users = await loginModel.readUsersFromFile();
     const index = users.findIndex(u =&gt; u.username === username);
 
@@ -134,7 +133,7 @@ async function deleteAccount(username) {
 
     users.splice(index, 1);
     await loginModel.writeUsersToFile(users);
-    console.timeEnd(&#039;DeleteUser&#039;);
+    //console.timeEnd(&#039;DeleteUser&#039;);
     return true;
 }
 

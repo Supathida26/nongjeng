@@ -44,7 +44,7 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">74.32</p>
+      <p class="stat">76.63</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">40.12</p>
+      <p class="stat">38.33</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">1.35</p>
+      <p class="stat">1.12</p>
     </div>
   </div>
 </div>
@@ -101,7 +101,7 @@ async function ensureDataDir() {
 }
 
 async function readPostsFromFile() {
-    console.time(&#039;ReadPost&#039;);
+    //console.time(&#039;ReadPost&#039;);
     try {
         const fileData = await fs.readFile(filePath, &#039;utf8&#039;);
         const posts = JSON.parse(fileData);
@@ -117,7 +117,7 @@ async function readPostsFromFile() {
         }
         throw error;
     } finally {
-        console.timeEnd(&#039;ReadPost&#039;);
+        //console.timeEnd(&#039;ReadPost&#039;);
     }
 }
 
@@ -136,7 +136,7 @@ function updatePosts(update) {
 
 // ลบไฟล์แนบออกจากโฟลเดอร์ uploadFiles เวลาลบโพสต์หรืออัปเดตไฟล์ใหม่
 async function removeUploadedFiles(filesArray) {
-    console.time(&#039;ลบ file ใน uploadFile&#039;);
+    //console.time(&#039;ลบ file ใน uploadFile&#039;);
     if (!Array.isArray(filesArray)) return;
     for (const file of filesArray) {
         if (file &amp;&amp; file.path) {
@@ -147,37 +147,37 @@ async function removeUploadedFiles(filesArray) {
             }
         }
     }
-    console.timeEnd(&#039;ลบ file ใน uploadFile&#039;);
+    //console.timeEnd(&#039;ลบ file ใน uploadFile&#039;);
 }
 
 async function createNote(newPost) {
-    console.time(&#039;สร้าง Post&#039;);
+    //console.time(&#039;สร้าง Post&#039;);
     if (!newPost.comments) newPost.comments = [];
     return updatePosts(posts =&gt; {
         posts.push(newPost);
-        console.timeEnd(&#039;สร้าง Post&#039;);
+        //console.timeEnd(&#039;สร้าง Post&#039;);
         return newPost;
     });
 }
 
 async function getPosts() {
-    console.time(&#039;ดึงข้อมูล Post&#039;);
+    //console.time(&#039;ดึงข้อมูล Post&#039;);
     await operationQueue;
-    console.timeEnd(&#039;ดึงข้อมูล Post&#039;);
+    //console.timeEnd(&#039;ดึงข้อมูล Post&#039;);
     return readPostsFromFile();
 }
 
 // ดึงโพสต์เดียวตาม ID (ใช้แสดงข้อมูลในหน้า edit.html และ comment.html)
 async function getPostById(postId) {
-    console.time(&#039;ค้นหา Post&#039;);
+    //console.time(&#039;ค้นหา Post&#039;);
     await operationQueue;
     const posts = await readPostsFromFile();
-    console.timeEnd(&#039;ค้นหา Post&#039;);
+    //console.timeEnd(&#039;ค้นหา Post&#039;);
     return posts.find(post =&gt; post.id === Number(postId)) || null;
 }
 
 async function updatePost(postId, updatedData) {
-    console.time(&#039;แก้ไข Post&#039;);
+    //console.time(&#039;แก้ไข Post&#039;);
     return updatePosts(async posts =&gt; {
         const index = posts.findIndex(post =&gt; post.id === Number(postId));
 
@@ -195,14 +195,14 @@ async function updatePost(postId, updatedData) {
             ...updatedData,
             updatedAt: new Date().toISOString()
         };
-        console.timeEnd(&#039;แก้ไข Post&#039;);
+        //console.timeEnd(&#039;แก้ไข Post&#039;);
         return posts[index];
     });
 }
 
 // ลบโพสต์ออกจากระบบ (ใช้ได้ทั้ง Admin และเจ้าของโพสต์)
 async function deletePost(postId) {
-    console.time(&#039;ลบ Post&#039;);
+    //console.time(&#039;ลบ Post&#039;);
     return updatePosts(async posts =&gt; {
         const index = posts.findIndex(post =&gt; post.id === Number(postId));
 
@@ -214,13 +214,13 @@ async function deletePost(postId) {
         await removeUploadedFiles(posts[index].file);
 
         posts.splice(index, 1);
-        console.timeEnd(&#039;ลบ Post&#039;);
+        //console.timeEnd(&#039;ลบ Post&#039;);
         return true;
     });
 }
 
 async function commentPost(postId, commentData) {
-    console.time(&#039;Comment&#039;);
+    //console.time(&#039;Comment&#039;);
     return updatePosts(posts =&gt; {
         const index = posts.findIndex(post =&gt; post.id === Number(postId));
 
@@ -233,14 +233,14 @@ async function commentPost(postId, commentData) {
         }
 
         posts[index].comments.push(commentData);
-        console.timeEnd(&#039;Comment&#039;);
+        //console.timeEnd(&#039;Comment&#039;);
         return posts[index];
     });
 }
 
 // ลบคอมเมนต์ (สำหรับเจ้าของคอมเมนต์ หรือ Admin ลบจากกล่องรายงาน Comment)
 async function deleteComment(postId, commentId) {
-    console.time(&#039;ลบ Comment&#039;);
+    //console.time(&#039;ลบ Comment&#039;);
     return updatePosts(posts =&gt; {
         const postIndex = posts.findIndex(post =&gt; post.id === Number(postId));
         if (postIndex === -1 || !Array.isArray(posts[postIndex].comments)) {
@@ -255,7 +255,7 @@ async function deleteComment(postId, commentId) {
         }
 
         posts[postIndex].comments.splice(commentIndex, 1);
-        console.timeEnd(&#039;ลบ Comment&#039;);
+        //console.timeEnd(&#039;ลบ Comment&#039;);
         return posts[postIndex];
     });
 }

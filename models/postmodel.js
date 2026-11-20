@@ -10,7 +10,7 @@ async function ensureDataDir() {
 }
 
 async function readPostsFromFile() {
-    console.time('ReadPost');
+    //console.time('ReadPost');
     try {
         const fileData = await fs.readFile(filePath, 'utf8');
         const posts = JSON.parse(fileData);
@@ -26,7 +26,7 @@ async function readPostsFromFile() {
         }
         throw error;
     } finally {
-        console.timeEnd('ReadPost');
+        //console.timeEnd('ReadPost');
     }
 }
 
@@ -45,7 +45,7 @@ function updatePosts(update) {
 
 // ลบไฟล์แนบออกจากโฟลเดอร์ uploadFiles เวลาลบโพสต์หรืออัปเดตไฟล์ใหม่
 async function removeUploadedFiles(filesArray) {
-    console.time('ลบ file ใน uploadFile');
+    //console.time('ลบ file ใน uploadFile');
     if (!Array.isArray(filesArray)) return;
     for (const file of filesArray) {
         if (file && file.path) {
@@ -56,37 +56,37 @@ async function removeUploadedFiles(filesArray) {
             }
         }
     }
-    console.timeEnd('ลบ file ใน uploadFile');
+    //console.timeEnd('ลบ file ใน uploadFile');
 }
 
 async function createNote(newPost) {
-    console.time('สร้าง Post');
+    //console.time('สร้าง Post');
     if (!newPost.comments) newPost.comments = [];
     return updatePosts(posts => {
         posts.push(newPost);
-        console.timeEnd('สร้าง Post');
+        //console.timeEnd('สร้าง Post');
         return newPost;
     });
 }
 
 async function getPosts() {
-    console.time('ดึงข้อมูล Post');
+    //console.time('ดึงข้อมูล Post');
     await operationQueue;
-    console.timeEnd('ดึงข้อมูล Post');
+    //console.timeEnd('ดึงข้อมูล Post');
     return readPostsFromFile();
 }
 
 // ดึงโพสต์เดียวตาม ID (ใช้แสดงข้อมูลในหน้า edit.html และ comment.html)
 async function getPostById(postId) {
-    console.time('ค้นหา Post');
+    //console.time('ค้นหา Post');
     await operationQueue;
     const posts = await readPostsFromFile();
-    console.timeEnd('ค้นหา Post');
+    //console.timeEnd('ค้นหา Post');
     return posts.find(post => post.id === Number(postId)) || null;
 }
 
 async function updatePost(postId, updatedData) {
-    console.time('แก้ไข Post');
+    //console.time('แก้ไข Post');
     return updatePosts(async posts => {
         const index = posts.findIndex(post => post.id === Number(postId));
 
@@ -104,14 +104,14 @@ async function updatePost(postId, updatedData) {
             ...updatedData,
             updatedAt: new Date().toISOString()
         };
-        console.timeEnd('แก้ไข Post');
+        //console.timeEnd('แก้ไข Post');
         return posts[index];
     });
 }
 
 // ลบโพสต์ออกจากระบบ (ใช้ได้ทั้ง Admin และเจ้าของโพสต์)
 async function deletePost(postId) {
-    console.time('ลบ Post');
+    //console.time('ลบ Post');
     return updatePosts(async posts => {
         const index = posts.findIndex(post => post.id === Number(postId));
 
@@ -123,13 +123,13 @@ async function deletePost(postId) {
         await removeUploadedFiles(posts[index].file);
 
         posts.splice(index, 1);
-        console.timeEnd('ลบ Post');
+        //console.timeEnd('ลบ Post');
         return true;
     });
 }
 
 async function commentPost(postId, commentData) {
-    console.time('Comment');
+    //console.time('Comment');
     return updatePosts(posts => {
         const index = posts.findIndex(post => post.id === Number(postId));
 
@@ -142,14 +142,14 @@ async function commentPost(postId, commentData) {
         }
 
         posts[index].comments.push(commentData);
-        console.timeEnd('Comment');
+        //console.timeEnd('Comment');
         return posts[index];
     });
 }
 
 // ลบคอมเมนต์ (สำหรับเจ้าของคอมเมนต์ หรือ Admin ลบจากกล่องรายงาน Comment)
 async function deleteComment(postId, commentId) {
-    console.time('ลบ Comment');
+    //console.time('ลบ Comment');
     return updatePosts(posts => {
         const postIndex = posts.findIndex(post => post.id === Number(postId));
         if (postIndex === -1 || !Array.isArray(posts[postIndex].comments)) {
@@ -164,7 +164,7 @@ async function deleteComment(postId, commentId) {
         }
 
         posts[postIndex].comments.splice(commentIndex, 1);
-        console.timeEnd('ลบ Comment');
+        //console.timeEnd('ลบ Comment');
         return posts[postIndex];
     });
 }
