@@ -44,7 +44,7 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">66.44</p>
+      <p class="stat">68.80</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">31.59</p>
+      <p class="stat">29.18</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.91</p>
+      <p class="stat">0.78</p>
     </div>
   </div>
 </div>
@@ -96,7 +96,7 @@ const dataDir = path.join(__dirname, &#039;../data&#039;);
 const filePath = path.join(dataDir, &#039;users.json&#039;);
 
 async function readUsersFromFile() {
-    console.time(&#039;ReadinfoUser&#039;);
+    //console.time(&#039;ReadinfoUser&#039;);
     try {
         const fileData = await fs.readFile(filePath, &#039;utf8&#039;);
         const users = JSON.parse(fileData);
@@ -112,36 +112,36 @@ async function readUsersFromFile() {
 }
 
 async function writeUsersToFile(users) {
-    console.time(&#039;WriteinfoUser&#039;);
+    //console.time(&#039;WriteinfoUser&#039;);
     await fs.mkdir(dataDir, { recursive: true });
     await fs.writeFile(filePath, JSON.stringify(users, null, 2), &#039;utf8&#039;);
-    console.timeEnd(&#039;WriteinfoUser&#039;);
+    //console.timeEnd(&#039;WriteinfoUser&#039;);
 }
 
 // ค้นหาผู้ใช้จาก username หรือ email
 async function findByIdentifier(identifier) {
-    console.time(&#039;ค้นหาผู้ใช้&#039;);
+    //console.time(&#039;ค้นหาผู้ใช้&#039;);
     const users = await readUsersFromFile();
     const result = users.find(
         u =&gt; (u.username &amp;&amp; u.username.toLowerCase() === identifier.toLowerCase()) ||
              (u.email &amp;&amp; u.email.toLowerCase() === identifier.toLowerCase())
     ) || null;
-    console.timeEnd(&#039;ค้นหาผู้ใช้&#039;);
+    //console.timeEnd(&#039;ค้นหาผู้ใช้&#039;);
     return result;
 }
 
 // ค้นหาผู้ใช้สำหรับหน้า Login
 async function findByIdentifierAndPassword(identifier, password) {
-    console.time(&#039;ตรวจสอบผู้ใช้ใน Login&#039;);
+    //console.time(&#039;ตรวจสอบผู้ใช้ใน Login&#039;);
     const user = await findByIdentifier(identifier);
     const result = user &amp;&amp; user.password === password ? user : null;
-    console.timeEnd(&#039;ตรวจสอบผู้ใช้ใน Login&#039;);
+    //console.timeEnd(&#039;ตรวจสอบผู้ใช้ใน Login&#039;);
     return result;
 }
 
 // สร้างบัญชีผู้ใช้ใหม่ (สำหรับระบบสมัครสมาชิก)
 async function createUser(userData) {
-    console.time(&#039;สร้าง User ใหม่&#039;);
+    //console.time(&#039;สร้าง User ใหม่&#039;);
     const users = await readUsersFromFile();
 
     const newUser = {
@@ -150,20 +150,20 @@ async function createUser(userData) {
         email: userData.email,
         password: userData.password,
         role: userData.role || &quot;user&quot;, // &quot;user&quot; หรือ &quot;admin&quot;
-        status: &quot;active&quot;, // &quot;active&quot; หรือ &quot;banned&quot;
+        status: &quot;normal&quot;, // &quot;active&quot; หรือ &quot;banned&quot;
         loginType: &quot;local&quot;,
         createdAt: new Date().toISOString()
     };
 
     users.push(newUser);
     await writeUsersToFile(users);
-    console.timeEnd(&#039;สร้าง User ใหม่&#039;);
+    //console.timeEnd(&#039;สร้าง User ใหม่&#039;);
     return newUser;
 }
 
 // บันทึกหรือดึงข้อมูลผู้ใช้ที่ล็อกอินผ่าน Google ลงใน users.json
 async function findOrCreateGoogleUser(googlePayload) {
-    console.time(&#039;บันทึกข้อมูล Google Login&#039;)
+    //console.time(&#039;บันทึกข้อมูล Google Login&#039;)
     const users = await readUsersFromFile();
     let user = users.find(u =&gt; u.email &amp;&amp; u.email.toLowerCase() === googlePayload.email.toLowerCase());
 
@@ -175,14 +175,14 @@ async function findOrCreateGoogleUser(googlePayload) {
             fullName: googlePayload.name,
             picture: googlePayload.picture,
             role: &quot;user&quot;,
-            status: &quot;active&quot;,
+            status: &quot;normal&quot;,
             loginType: &quot;google&quot;,
             createdAt: new Date().toISOString()
         };
         users.push(user);
         await writeUsersToFile(users);
     }
-    console.timeEnd(&#039;บันทึกข้อมูล Google Login&#039;)
+    //console.timeEnd(&#039;บันทึกข้อมูล Google Login&#039;)
 
     return user;
 }

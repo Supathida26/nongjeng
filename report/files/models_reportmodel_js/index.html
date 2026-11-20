@@ -44,7 +44,7 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">68.43</p>
+      <p class="stat">70.99</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">25.38</p>
+      <p class="stat">24.06</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.74</p>
+      <p class="stat">0.62</p>
     </div>
   </div>
 </div>
@@ -96,7 +96,7 @@ const dataDir = path.join(__dirname, &#039;../data&#039;);
 const reportPath = path.join(dataDir, &#039;report.json&#039;);
 
 async function readReportsFromFile() {
-    console.time(&#039;ReadReport&#039;);
+    //console.time(&#039;ReadReport&#039;);
     try {
         const fileData = await fs.readFile(reportPath, &#039;utf8&#039;);
         const reports = JSON.parse(fileData);
@@ -104,20 +104,20 @@ async function readReportsFromFile() {
     } catch (error) {
         return [];
     } finally {
-        console.timeEnd(&#039;ReadReport&#039;);
+        //console.timeEnd(&#039;ReadReport&#039;);
     }
 }
 
 async function writeReportsToFile(reports) {
-    console.time(&#039;WriteReport&#039;);
+    //console.time(&#039;WriteReport&#039;);
     await fs.mkdir(dataDir, { recursive: true });
     await fs.writeFile(reportPath, JSON.stringify(reports, null, 2), &#039;utf8&#039;);
-    console.timeEnd(&#039;WriteReport&#039;);
+    //console.timeEnd(&#039;WriteReport&#039;);
 }
 
 // สร้าง Report รองรับทั้ง 3 ประเภทในหน้า admin.html: &#039;note&#039;, &#039;user&#039;, &#039;comment&#039;
 async function createReport(reportData) {
-    console.time(&#039;สร้าง Report&#039;);
+    //console.time(&#039;สร้าง Report&#039;);
     const reports = await readReportsFromFile();
 
     const newReport = {
@@ -134,7 +134,7 @@ async function createReport(reportData) {
     
     reports.push(newReport);
     await writeReportsToFile(reports);
-    console.timeEnd(&#039;สร้าง Report&#039;);
+    //console.timeEnd(&#039;สร้าง Report&#039;);
     return newReport;
 }
 
@@ -144,7 +144,7 @@ async function getAllReports() {
 
 // อัปเดตสถานะ Report เป็น resolved
 async function resolveReport(reportId) {
-    console.time(&#039;เปลี่ยนสถานะ Report&#039;);
+    //console.time(&#039;เปลี่ยนสถานะ Report&#039;);
     const reports = await readReportsFromFile();
     const index = reports.findIndex(r =&gt; r.reportId === Number(reportId));
     
@@ -154,13 +154,13 @@ async function resolveReport(reportId) {
     reports[index].updatedAt = new Date().toISOString();
 
     await writeReportsToFile(reports);
-    console.timeEnd(&#039;เปลี่ยนสถานะ Report&#039;);
+    //console.timeEnd(&#039;เปลี่ยนสถานะ Report&#039;);
     return reports[index];
 }
 
 // ลบรายการ Report ออกจากหน้า Admin
 async function deleteReport(reportId) {
-    console.time(&#039;ลบ Report&#039;);
+    //console.time(&#039;ลบ Report&#039;);
     const reports = await readReportsFromFile();
     const index = reports.findIndex(r =&gt; r.reportId === Number(reportId));
 
@@ -168,7 +168,7 @@ async function deleteReport(reportId) {
 
     reports.splice(index, 1);
     await writeReportsToFile(reports);
-    console.timeEnd(&#039;ลบ Report&#039;);
+    //console.timeEnd(&#039;ลบ Report&#039;);
     return true;
 }
 
