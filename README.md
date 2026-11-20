@@ -1304,10 +1304,12 @@ jobs:
 ### Final Retrospective : 
 
 ### Process การทำงาน
+
 - แก้ไข bugs ต่างๆที่เกิดขึ้น ได้แก่ Middleware ของหน้า admin, การ login ด้วย Google login, และหน้า UI ต่างๆที่ตัวอักษรจางเกินไป หรือเกินกรอบที่กำหนด
 - เพิ่มการตรวจสอบ UI Test Case
 - ตรวจสอบ Test Case ต่างๆ ด้วย CI/CD ผ่าน Github Action
 - ทำ Profiling (Static และ Dynamic) และเปรียบเทียบกับ Phase 3
+- ทำการ deployment ขึ้นบน AWS
 - ทำเนื้อหารายงานเพิ่มเติมจาก Phase 3
 - บันทึกวิดิโอการทำ Retrospective
 
