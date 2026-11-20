@@ -651,8 +651,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 });
 ```
 
-### Test coverage report
-### Test Summary
+## Test coverage report
 - **Test Suites:** 4 passed, 4 total
 - **Tests:** 57 passed, 57 total
 - **Snapshots:** 0 total
@@ -676,14 +675,31 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ### Static profiling
 
-![Average กราฟstatic](./images/Staticphase3-Total.png)
-![Static login](./images/Staticphase3-loginmodel.png)
-![Static post](./images/Staticphase3-postmodel.png)
-![Static report](./images/Staticphase3-reportmodel.png)
-![Static admin](./images/Staticphase3-adminmodel.png)
-![Static file](./images/Staticphase3-summaryfile.png)
+#### Total
+   
+![Average กราฟstatic](./images/Sprint3-StaticProfiling/Staticphase3-Total.png)
 
-ตารางสรุปข้อมูล Static profiling :
+#### ไฟล์ loginmodel.js
+
+![Static login](./images/Sprint3-StaticProfiling/Staticphase3-loginmodel.png)
+
+#### ไฟล์ postmodel.js
+
+![Static post](./images/Sprint3-StaticProfiling/Staticphase3-postmodel.png)
+
+#### ไฟล์ reportmodel.js
+
+![Static report](./images/Sprint3-StaticProfiling/Staticphase3-reportmodel.png)
+
+#### ไฟล์ adminmodel.js
+
+![Static admin](./images/Sprint3-StaticProfiling/Sprint3-StaticProfiling/Staticphase3-adminmodel.png)
+
+#### Summery
+
+![Static file](./images/Sprint3-StaticProfiling/Staticphase3-summaryfile.png)
+
+#### ตารางสรุปข้อมูล Static profiling :
 
 | ลำดับ | Model.js | Maintainability (Point) | Line of code (lines) | Difficulty (Point) | Estimated Errors (errors) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -694,28 +710,51 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 ### Dynamic profiling
 
-1) ตอน run หน้าเว็บ
-![Dynamic โหลดหน้าweb](./images/Dynamicphase3-loadweb.png)
-2) ตอน login
-![Dynamic login](./images/Dynamicphase3-login.png)
-3) ตอนสมัครเข้าใช้งานสำเร็จ
-![Dynamic register](./images/Dynamicphase3-register.png)
-4) ตอนสร้าง post สำเร็จ
-![Dynamic post](./images/Dynamicphase3-post.png)
-5) ตอนแก้ไขโพสต์
-![Dynamic editpost](./images/Dynamicphase3-editpost.png)
-6) ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
-![Dynamic ค้นหา](./images/Dynamicphase3-search.png)
-7) ตอน comment ในโพสต์
-![Dynamic comment](./images/Dynamicphase3-comment.png)
-8) ตอนลบ comment
-![Dynamic ลบcomment](./images/Dynamicphase3-deletepost.png)
-9) ตอน report post
-![Dynamic report](./images/Dynamicphase3-report.png)
-10) ตอน admin อนุมัติหรือลบ report
-![Dynamic report สำหรับ admin](./images/Dynamicphase3-funadmin.png)
+#### ตอน run หน้าเว็บ
 
-ตารางสรุปข้อมูล Dynamic Profiling :
+![Dynamic โหลดหน้าweb](./images/Sprint3-DynamicProfiling/Dynamicphase3-loadweb.png)
+
+#### ตอน login
+
+![Dynamic login](./images/Sprint3-DynamicProfiling/Dynamicphase3-login.png)
+
+#### ตอนสมัครเข้าใช้งานสำเร็จ
+
+![Dynamic register](./images/Sprint3-DynamicProfiling/Dynamicphase3-register.png)
+
+#### ตอนสร้าง post สำเร็จ
+
+![Dynamic post](./images/Sprint3-DynamicProfiling/Dynamicphase3-post.png)
+
+#### ตอนแก้ไขโพสต์
+
+![Dynamic editpost](./images/Sprint3-DynamicProfiling/Dynamicphase3-editpost.png)
+
+#### ตอนค้นหาใน searchbar โดยพิมพ์ทีละตัวอักษร
+
+![Dynamic ค้นหา](./images/Sprint3-DynamicProfiling/Dynamicphase3-search.png)
+
+#### ตอน comment ในโพสต์
+
+![Dynamic comment](./images/Sprint3-DynamicProfiling/Dynamicphase3-comment.png)
+
+#### ตอนลบ comment
+
+![Dynamic ลบcomment](./images/Sprint3-DynamicProfiling/Dynamicphase3-deletecomment.png)
+
+#### ตอนลบ post
+
+![Dynamic ลบpost](./images/Sprint3-DynamicProfiling/Dynamicphase3-deletepost.png)
+
+#### ตอน report post
+
+![Dynamic report](./images/Sprint3-DynamicProfiling/Dynamicphase3-report.png)
+
+#### ตอน admin อนุมัติหรือลบ report
+
+![Dynamic report สำหรับ admin](./images/Sprint3-DynamicProfiling/Dynamicphase3-adminuser.png)
+
+#### ตารางสรุปข้อมูล Dynamic Profiling :
 
 | ลำดับ | ส่วนการทำงานของระบบ | รายการที่วัดผลการทำงาน | เวลาทำงานที่ปรากฎ (ms)|
 | :--- | :--- | :--- | :--- |
@@ -747,7 +786,35 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 | 6 | Login system | เมื่อกดปุ่ม Login with Google ระบบไม่สามารถดำเนินการเข้าสู่ระบบได้ตามปกติ | ปรับปรุงและแก้ไขการทำงานของ Backend ในส่วนการเข้าสู่ระบบผ่าน Google เพื่อให้สามารถเข้าสู่ระบบได้อย่างถูกต้อง |
 
 ### Website screenshot 
-![หน้าจอหลักเว็บไซต์](./images/home-page.png)
+
+#### หน้า home.html
+
+![หน้าจอหน้าหลัก](./images/Sprint3-UI-Screenshot/phase3Home.png)
+
+ #### หน้า login.html
+
+![หน้าจอหน้าLogin](./images/Sprint3-UI-Screenshot/phase3Login.png)
+
+![หน้าจอหน้าRegister](./images/Sprint3-UI-Screenshot/phase3Register.png)
+
+#### หน้า share.html
+
+![หน้าจอหน้าShare](./images/Sprint3-UI-Screenshot/phase3Sharenote.png)
+
+#### หน้า edit.html
+
+![หน้าจอหน้าEdit](./images/Sprint3-UI-Screenshot/phase3Editnote.png)
+
+#### หน้า comment.html
+
+![หน้าจอหน้าComment](./images/Sprint3-UI-Screenshot/phase3Comment.png)
+
+#### หน้า admin.html
+
+![หน้าจอหน้าAdmin](./images/Sprint3-UI-Screenshot/phase3Adminuser.png)
+
+![หน้าจอหน้าReport](./images/Sprint3-UI-Screenshot/phase3Adminreport.png)
+
 
 ## สิ่งเปลี่ยนแปลงจาก รายงาน phase 1 and 2 
 | มิติการพัฒนา | Phase 1 (ช่วงเริ่มต้น/โครงสร้างพื้นฐาน) | Phase 2 (ช่วงต่อยอดและยกระดับระบบ) |
@@ -806,7 +873,4 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 โดยรวมแล้ว กลุ่มทำงานร่วมกันได้ดี มีการแบ่งหน้าที่ชัดเจน สมาชิกทุกคนมีความรับผิดชอบและพยายามทำงานอย่างเต็มที่ ทุกคนรับฟังความคิดเห็น ช่วยเหลือกัน และร่วมกันแก้ไขปัญหาที่เกิดขึ้น
 อย่างไรก็ตาม กลุ่มพบปัญหาด้านการบริหารเวลา เนื่องจากมีงาน Open House และงานวิชาอื่นเข้ามาพร้อมกัน ทำให้มีเวลาทำงานน้อยลงและเกิดความเหนื่อยล้า
 สำหรับ Phase ถัดไป กลุ่มควรเริ่มทำงานทันทีที่ได้รับมอบหมาย วางแผนและจัดลำดับความสำคัญของงานให้ดีขึ้น รวมถึงหาเวลาทำงานร่วมกันที่เหมาะสม เพื่อให้งานสำเร็จตามเป้าหมายและลดปัญหาที่อาจเกิดขึ้น
-<<<<<<< HEAD
 
-=======
->>>>>>> 5ad3bb473903cd0aa6ef92f9d2f96e998f9d5914

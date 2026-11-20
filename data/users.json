@@ -66,5 +66,15 @@
     "status": "active",
     "loginType": "local",
     "createdAt": "2026-11-17T10:38:17.191Z"
+  },
+  {
+    "id": 1795110682011,
+    "username": "Phase3",
+    "email": "Phase3@gmail.com",
+    "password": "najanaja",
+    "role": "user",
+    "status": "active",
+    "loginType": "local",
+    "createdAt": "2026-11-19T17:51:22.011Z"
   }
 ]
