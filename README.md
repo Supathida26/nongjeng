@@ -1000,10 +1000,30 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 
 ## ผล profiling (Static และ Dynamic profiling) เทียบกับ phase 3
 
-## Static profiling
+### Static profiling
 
+#### Total
 
-## Dynamic profiling
+#### ไฟล์ loginmode.js
+
+#### ไฟล์ postmodel.js
+
+#### ไฟล์ reportmodel.js
+
+#### ไฟล์ adminmodel.js
+
+#### Summary
+
+#### ตารางสรุปข้อมูล Static profiling :
+
+| ลำดับ | Model.js | Maintainability (Point) | Line of code (lines) | Difficulty (Point) | Estimated Errors (errors) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | loginmodel.js | 68.80 | 106 | 29.18 | 0.78 |
+| 2 | postmodel.js | 76.63 | 180 | 38.33 | 1.12 |
+| 3 | reportmodel.js | 70.99 | 89 | 24.06 | 0.62 |
+| 4 | adminmodel.js | 77.58 | 64 | 19.68 | 0.36 |
+
+### Dynamic profiling
 
 #### ตอน run หน้าเว็บ
  
@@ -1066,6 +1086,8 @@ test('UI-07: ตรวจสอบในส่วนช่องแสดงค�
 | 15 | Report | เปลี่ยนสถานะ report | 2.269 - 2.746 |
 | 16 | Report | ลบ report | 2.731 - 3.384 |
 
+### สรุปการเปรียบเทียบระหว่าง Phase 3 และ Phase 4
+
 
 ## อธิบาย CI/CD ที่ใช้ในการทำ product
 ### 1. CI/CD ที่ใช้ในการพัฒนา product
@@ -1087,7 +1109,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout code 
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -1197,6 +1219,12 @@ jobs:
 ## สรุปการประชุม
 
 ### Process การทำงาน
+- แก้ไข bugs ต่างๆที่เกิดขึ้น ได้แก่ Middleware ของหน้า admin, การ login ด้วย Google login, และหน้า UI ต่างๆที่ตัวอักษรจางเกินไป หรือเกินกรอบที่กำหนด
+- เพิ่มการตรวจสอบ UI Test Case
+- ตรวจสอบ Test Case ต่างๆ ด้วย CI/CD ผ่าน Github Action
+- ทำ Profiling (Static และ Dynamic) และเปรียบเทียบกับ Phase 3
+- ทำเนื้อหารายงานเพิ่มเติมจาก Phase 3
+- บันทึกวิดิโอการทำ Retrospective
 
 ### สิ่งที่ทำได้ดี 
 
