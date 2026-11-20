@@ -693,7 +693,7 @@ test('TC-01: เข้าสู่ระบบด้วยฟิลด์ userna
 
 #### ไฟล์ adminmodel.js
 
-![Static admin](./images/Sprint3-StaticProfiling/Sprint3-StaticProfiling/Staticphase3-adminmodel.png)
+![Static admin](./images/Sprint3-StaticProfiling/Staticphase3-adminmodel.png)
 
 #### Summery
 
