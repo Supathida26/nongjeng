@@ -1273,7 +1273,7 @@ jobs:
 ### 4. สรุปประโยชน์ต่อการพัฒนา Product
 การนำ CI/CD มาใช้ผ่าน GitHub Actions ช่วยให้ทีมสามารถตรวจสอบความถูกต้องของโค้ดและชุดทดสอบต่างๆ ได้อย่างสม่ำเสมอทุกครั้งที่มีการอัปเดตโค้ด ลดความผิดพลาดและภาระจากการรันทดสอบด้วยมือ รวมถึงช่วยให้ตรวจพบจุดบกพร่องได้เร็วขึ้นก่อนนำโค้ดไปใช้งานจริง นอกจากนี้ การแยก workflow และรันแบบ Parallel Job ยังช่วยให้ทราบผลการทดสอบแต่ละส่วนได้รวดเร็วและแยกแยะสาเหตุของปัญหาได้ชัดเจน ส่งผลให้การพัฒนา product มีเสถียรภาพ และความน่าเชื่อถือมากยิ่งขึ้น
 
-## Deployment
+## Deployment by AWS
 
 กลุ่มได้นำเว็บไซต์ Notely ไปติดตั้งและเผยแพร่ผ่าน AWS Elastic Beanstalk โดยใช้ Node.js 26 บนระบบปฏิบัติการ Amazon Linux 2023 และใช้ Nginx เป็น Proxy Server สำหรับจัดการคำขอที่เข้ามายังเว็บไซต์ หลังจาก Deploy เสร็จสิ้น ได้ทดสอบเปิดเว็บไซต์ผ่าน URL ที่ AWS กำหนดให้ และพบว่าสามารถเข้าถึงหน้าเว็บไซต์ได้ตามปกติผ่าน HTTP
 
@@ -1289,12 +1289,15 @@ jobs:
 
 **AWS Elastic Beanstalk Environment**
 
+![AWS Elastic Beanstalk Environment](./images/Deployment-AWS/beanstalk.png)
 
 **Website Notely หลัง Deploy**
 
+![Website Notely หลัง Deploy](./images/Deployment-AWS/web-afterdeploy.png)
 
 **ผลการ Deploy**
 
+![ผลการ Deploy](./images/Deployment-AWS/result-AWS.png)
 
 ## สรุปการประชุม
 
